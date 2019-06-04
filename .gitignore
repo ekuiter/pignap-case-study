@@ -2,3 +2,5 @@
 /build
 /*.log
 /.vagrant
+/.vscode/ipch
+/.vscode/settings.json
