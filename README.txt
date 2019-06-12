@@ -17,6 +17,7 @@ Some scripts are included for easy usage:
 - flash.bat: Starts the VM (if not yet running) and flashes the software to the ESP32.
 - shell.bat: Starts the VM (if not yet running) and opens a shell. See below.
 - halt.bat: Stops the VM. Use this after flashing is done and the VM is no more needed.
+- reset.bat: Completely removes the VM.
 
 Manual Usage
 ============
