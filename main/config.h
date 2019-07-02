@@ -4,8 +4,7 @@
 #include "lib/output.h"
 #include "lib/button.h"
 
-// GPIO PINS
-// outputs
+// OUTPUTS
 #define OUTPUT_GPIO_LED_1_GREEN       14
 #define OUTPUT_GPIO_LED_1_RED         12
 #define OUTPUT_GPIO_LED_2_GREEN       13
@@ -22,7 +21,7 @@
 #define OUTPUT_GPIO_MAGNETIC_VALVE_4  33
 #define OUTPUT_GPIO_COUNTER           18
 
-extern const char* output_pin_names[];
+extern const char* output_pin_names[]; // only used for logging
 
 // bit mask that configures output pins
 #define OUTPUT_PIN_SELECT \
@@ -44,7 +43,7 @@ extern const char* output_pin_names[];
     | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_3) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_4) \
     | PIN_BIT(OUTPUT_GPIO_COUNTER))
 
-// buttons
+// BUTTONS
 #define BUTTON_GPIO_REED_SWITCH_1    37
 #define BUTTON_GPIO_REED_SWITCH_2    38
 #define BUTTON_GPIO_REED_SWITCH_3    34
@@ -53,7 +52,7 @@ extern const char* output_pin_names[];
 #define BUTTON_GPIO_RESET_ISOFLURANE 0
 #define BUTTON_GPIO_VOLTAGE_MONITOR  5
 
-extern const char* button_pin_names[];
+extern const char* button_pin_names[]; // only used for logging
 
 // bit mask that configures buttons as input pins
 #define BUTTON_PIN_SELECT \
@@ -71,6 +70,17 @@ extern const char* button_pin_names[];
 #define BUTTON_INVERTED_SELECT \
     (PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE) | PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
 
+// I2C
+#define I2C_SDA_PIN 21
+#define I2C_SCL_PIN 22
+
+// LCD
+// comment the next line out to remove logging to LCD display
+#define ENABLE_LCD
+#define LCD_I2C_ADDRESS 0x27
+#define LCD_NUM_COLS    16
+#define LCD_NUM_ROWS    2
+
 // TASKS
 // control tasks are pinned to core 0, all others to core 1
 
@@ -84,5 +94,11 @@ extern const char* button_pin_names[];
 #define BUTTON_HANDLER_TASK_CORE_ID    0
 #define BUTTON_HANDLER_TASK_STACK_SIZE 4096
 #define BUTTON_HANDLER_TASK_PRIORITY   9
+
+// MISC
+// fixes code assistance in Visual Studio Code
+#ifndef CONFIG_FREERTOS_HZ
+#define CONFIG_FREERTOS_HZ 100
+#endif
 
 #endif

@@ -5,6 +5,7 @@
 // and https://hackaday.com/2015/12/10/embed-with-elliot-debounce-your-noisy-buttons-part-ii/
 
 #include <stdint.h>
+#include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 
 #define PIN_BIT(x) (1ULL<<x)
