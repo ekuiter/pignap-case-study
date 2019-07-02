@@ -5,7 +5,7 @@
 
 #define PIN_BIT(x) (1ULL<<x)
 
-void output_init(unsigned long long pin_select, unsigned long long inverted_select);
+void output_init(unsigned long long pin_select, unsigned long long inverted_select, const char** _pin_names);
 void output_set(gpio_num_t pin, int level);
 void output_on(gpio_num_t pin);
 void output_off(gpio_num_t pin);

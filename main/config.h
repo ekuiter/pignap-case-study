@@ -22,6 +22,8 @@
 #define OUTPUT_GPIO_MAGNETIC_VALVE_4  35
 #define OUTPUT_GPIO_COUNTER           18
 
+extern const char* output_pin_names[];
+
 // bit mask that configures output pins
 #define OUTPUT_PIN_SELECT \
     (PIN_BIT(OUTPUT_GPIO_LED_1_GREEN)       | PIN_BIT(OUTPUT_GPIO_LED_1_RED) \
