@@ -53,6 +53,8 @@ extern const char* output_pin_names[];
 #define BUTTON_GPIO_RESET_ISOFLURANE 0
 #define BUTTON_GPIO_VOLTAGE_MONITOR  5
 
+extern const char* button_pin_names[];
+
 // bit mask that configures buttons as input pins
 #define BUTTON_PIN_SELECT \
     (PIN_BIT(BUTTON_GPIO_REED_SWITCH_1)  | PIN_BIT(BUTTON_GPIO_REED_SWITCH_2) \
