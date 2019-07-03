@@ -107,6 +107,11 @@ extern const char* button_pin_names[]; // only used for logging
 #define TREATMENT_PROCESS_TASK_STACK_SIZE 4096
 #define TREATMENT_PROCESS_TASK_PRIORITY   8
 
+// writes to the LCD display
+#define LCD_LOG_TASK_CORE_ID    1
+#define LCD_LOG_TASK_STACK_SIZE 4096
+#define LCD_LOG_TASK_PRIORITY   5
+
 // MISC
 // fixes code assistance in Visual Studio Code
 #ifndef CONFIG_FREERTOS_HZ
