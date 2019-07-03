@@ -116,6 +116,11 @@ extern const char* button_pin_names[]; // only used for logging
 #define TREATMENT_PROCESS_TASK_STACK_SIZE 4096
 #define TREATMENT_PROCESS_TASK_PRIORITY   8
 
+// increments the counter
+#define COUNTER_TASK_CORE_ID    0
+#define COUNTER_TASK_STACK_SIZE 4096
+#define COUNTER_TASK_PRIORITY   7
+
 // writes to the LCD display
 #define LCD_LOG_TASK_CORE_ID    1
 #define LCD_LOG_TASK_STACK_SIZE 4096
