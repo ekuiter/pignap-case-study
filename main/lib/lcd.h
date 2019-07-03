@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include "../config.h"
 
-#ifdef ENABLE_LCD
+#ifdef LCD_ENABLED
 #define LCD_INIT(...) _lcd_init(__VA_ARGS__)
 #define LCD_LOG(...) _lcd_log(__VA_ARGS__)
 #else

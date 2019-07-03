@@ -70,13 +70,19 @@ extern const char* button_pin_names[]; // only used for logging
 #define BUTTON_INVERTED_SELECT \
     (PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE) | PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
 
+// TREATMENT PROCESS
+#define TREATMENT_PROCESS_NUM      4
+#define TREATMENT_PHASE_1_DURATION 5 // 75
+#define TREATMENT_PHASE_2_DURATION 4 // 15
+#define TREATMENT_TOTAL_DURATION   (TREATMENT_PHASE_1_DURATION + TREATMENT_PHASE_2_DURATION)
+
 // I2C
 #define I2C_SDA_PIN 21
 #define I2C_SCL_PIN 22
 
 // LCD
 // comment the next line out to remove logging to LCD display
-#define ENABLE_LCD
+#define LCD_ENABLED
 #define LCD_I2C_ADDRESS 0x27
 #define LCD_NUM_COLS    16
 #define LCD_NUM_ROWS    2
@@ -94,6 +100,12 @@ extern const char* button_pin_names[]; // only used for logging
 #define BUTTON_HANDLER_TASK_CORE_ID    0
 #define BUTTON_HANDLER_TASK_STACK_SIZE 4096
 #define BUTTON_HANDLER_TASK_PRIORITY   9
+
+// controls the treatment process, is informed by higher-priority
+// tasks about the environment
+#define TREATMENT_PROCESS_TASK_CORE_ID    0
+#define TREATMENT_PROCESS_TASK_STACK_SIZE 4096
+#define TREATMENT_PROCESS_TASK_PRIORITY   8
 
 // MISC
 // fixes code assistance in Visual Studio Code
