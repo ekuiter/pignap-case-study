@@ -2,7 +2,7 @@
 #define TREATMENT_PROCESS_H
 
 typedef enum {
-	REED_SWITCH_DOWN, REED_SWITCH_UP
+	START, STOP
 } treatment_process_event_t;
 
 void treatment_process_init();
