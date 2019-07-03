@@ -2,7 +2,7 @@
 #define TREATMENT_PROCESS_H
 
 typedef enum {
-	START, STOP
+	PIGLET_INSERTED, PIGLET_REMOVED, BLOCK, UNBLOCK
 } treatment_process_event_t;
 
 void treatment_process_init();
