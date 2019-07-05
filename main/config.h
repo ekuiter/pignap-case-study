@@ -108,22 +108,27 @@ extern const char* button_pin_names[]; // only used for logging
 #define LCD_NUM_ROWS    2
 
 // RTC
-#define RTC_I2C_ADDRESS      0x68
+#define RTC_I2C_ADDRESS             0x68
 // Add an offset for our timezone CET (UTC+1).
 // Note that we ignore daylight saving time, this means today's treatments from
 // midnight to 1am are assigned to yesterday - which should not be a problem.
-#define RTC_TIMEZONE_OFFSET  1
-// This defines when the time should be set to the stored __DATE__ and __TIME__.
-// This is the case when the battery is low or on first flash.
+#define RTC_TIMEZONE_OFFSET         1
+// This defines when the RTC time should be set to the stored __DATE__ and __TIME__.
+// This is the case when the battery is low, removed or on first flash.
 // We can detect this by looking at the RTC's current year: If it is below 2019,
 // it cannot be a valid current year (usually it will be about 2000 in that case).
-#define RTC_BATTERY_LOW_YEAR 2019
-// If the battery is low, all LEDs on the device blink for 2 seconds after booting.
+#define RTC_BATTERY_VALID_YEAR      2019
+// This defines a number of years after which the device should be maintained, that is,
+// after how many years the battery should be replaced and the device re-flashed.
+// After this number of years, all LEDs on the device blink 2 times after booting.
+#define RTC_MAINTENANCE_AFTER_YEARS 10
+// If the battery is low, all LEDs on the device blink 4 times after booting.
 // To replace the battery and force an update of the RTC time:
 // - flash the software
 // - turn off the device
 // - replace the battery
-// - turn on the device, all LEDs should blink for 2 seconds
+// - turn on the device, all LEDs should blink 4 times
+// - if turned off and on again, no LEDs should blink
 // The device should be turned on not too long after flashing to avoid time drift!
 
 // TASKS
