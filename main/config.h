@@ -96,8 +96,9 @@ extern const char* button_pin_names[]; // only used for logging
 #define CONTROLLER_ISOFLURANE_MAX       (CONTROLLER_ISOFLURANE_WARN + CONTROLLER_ISOFLURANE_TOLERANCE)
 
 // I2C
-#define I2C_SDA_PIN 21
-#define I2C_SCL_PIN 22
+#define I2C_SDA_PIN   21
+#define I2C_SCL_PIN   22
+#define I2C_FREQUENCY 100000
 
 // LCD
 // comment the next line out to remove logging to LCD display
@@ -105,6 +106,25 @@ extern const char* button_pin_names[]; // only used for logging
 #define LCD_I2C_ADDRESS 0x27
 #define LCD_NUM_COLS    16
 #define LCD_NUM_ROWS    2
+
+// RTC
+#define RTC_I2C_ADDRESS      0x68
+// Add an offset for our timezone CET (UTC+1).
+// Note that we ignore daylight saving time, this means today's treatments from
+// midnight to 1am are assigned to yesterday - which should not be a problem.
+#define RTC_TIMEZONE_OFFSET  1
+// This defines when the time should be set to the stored __DATE__ and __TIME__.
+// This is the case when the battery is low or on first flash.
+// We can detect this by looking at the RTC's current year: If it is below 2019,
+// it cannot be a valid current year (usually it will be about 2000 in that case).
+#define RTC_BATTERY_LOW_YEAR 2019
+// If the battery is low, all LEDs on the device blink for 2 seconds after booting.
+// To replace the battery and force an update of the RTC time:
+// - flash the software
+// - turn off the device
+// - replace the battery
+// - turn on the device, all LEDs should blink for 2 seconds
+// The device should be turned on not too long after flashing to avoid time drift!
 
 // TASKS
 // control tasks are pinned to core 0, all others to core 1
