@@ -165,6 +165,11 @@ extern const char* button_pin_names[]; // only used for logging
 #define LCD_LOG_TASK_STACK_SIZE 4096
 #define LCD_LOG_TASK_PRIORITY   25
 
+// starts a Wifi access point
+#define WIFI_TASK_CORE_ID    0
+#define WIFI_TASK_STACK_SIZE 4096
+#define WIFI_TASK_PRIORITY   10
+
 // MISC
 // fixes code assistance in Visual Studio Code
 #ifndef CONFIG_FREERTOS_HZ
