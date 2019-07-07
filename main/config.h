@@ -126,35 +126,44 @@ extern const char* button_pin_names[]; // only used for logging
 // - if turned off and on again (not reset), no LEDs should blink
 // The device should be turned on not too long after flashing to avoid time drift!
 
+// WIFI
+#define WIFI_SSID            "PIGNAP"
+#define WIFI_PSK             ***REMOVED***
+#define WIFI_MAX_CONNECTIONS 5
+
 // TASKS
-// control tasks are pinned to core 0, all others to core 1
+// Control tasks are pinned to core 1, monitoring tasks to core 0.
+// This guarantees a separation of concerns. The default system loop,
+// which handles networking events, is already pinned to core 0 by ESP-IDF.
 
 // responsible for intercepting and debouncing button presses
-#define BUTTON_TASK_CORE_ID    0
+#define BUTTON_TASK_CORE_ID    1
 #define BUTTON_TASK_STACK_SIZE 4096
 #define BUTTON_TASK_PRIORITY   10
 
 // handles button presses, blocks until button_task fills its
 // queue, so priority is lower than button_task
-#define BUTTON_HANDLER_TASK_CORE_ID    0
+#define BUTTON_HANDLER_TASK_CORE_ID    1
 #define BUTTON_HANDLER_TASK_STACK_SIZE 4096
 #define BUTTON_HANDLER_TASK_PRIORITY   9
 
 // controls the treatment process, is informed by higher-priority
 // tasks about the environment
-#define TREATMENT_PROCESS_TASK_CORE_ID    0
+#define TREATMENT_PROCESS_TASK_CORE_ID    1
 #define TREATMENT_PROCESS_TASK_STACK_SIZE 4096
 #define TREATMENT_PROCESS_TASK_PRIORITY   8
 
 // increments the counter, checks if filter and isoflurane are ready
-#define CONTROLLER_TASK_CORE_ID    0
+#define CONTROLLER_TASK_CORE_ID    1
 #define CONTROLLER_TASK_STACK_SIZE 4096
 #define CONTROLLER_TASK_PRIORITY   7
 
 // writes to the LCD display
-#define LCD_LOG_TASK_CORE_ID    1
+// has a higher priority than the default system loop to avoid
+// being interrupted during Wifi initialization
+#define LCD_LOG_TASK_CORE_ID    0
 #define LCD_LOG_TASK_STACK_SIZE 4096
-#define LCD_LOG_TASK_PRIORITY   5
+#define LCD_LOG_TASK_PRIORITY   25
 
 // MISC
 // fixes code assistance in Visual Studio Code
