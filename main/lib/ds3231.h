@@ -8,6 +8,7 @@
  * Copyright (C) 2016 Bhuvanchandra DV <bhuvanchandra.dv@gmail.com>
  * Copyright (C) 2018 Ruslan V. Uss <unclerus@gmail.com>
  * MIT Licensed as described in the file LICENSE
+ * https://github.com/UncleRus/esp-idf-lib/
  */
 
 #ifndef __DS3231_H__
