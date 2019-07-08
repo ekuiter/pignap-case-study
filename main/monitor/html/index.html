@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="de">
+    <head>
     <meta charset="utf-8">
-    <title>PIGNAP by HCP-Technology</title>
+    <title>PIGNAP</title>
 
     <style>
+        .wrapper {
+            width: 80%;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
 
+        .notice:not(:empty) {
+            background-color: pink;
+            padding: 8px 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
     </style>
 
     <script>
@@ -46,14 +57,70 @@
 
         onInterval(1000, ajaxFn("GET", "/status.json", 800,
             function(data) {
-                document.getElementById("status").innerHTML = data;
+                var json = JSON.parse(data);
+                document.getElementById("status-notice").innerHTML = null;
+                
+                document.getElementById("rtc").innerHTML = json.rtc.time;
+                document.getElementById("rtc-notice").innerHTML =
+                json.rtc.lostPower ? "Die Uhr wurde beim Einschalten des Geräts zurückgesetzt. " +
+                    // TODO "Aktuell sind keine Behandlungen möglich. " +
+                    "Lassen Sie ggf. die interne Batterie überprüfen." :
+                json.rtc.isMaintenanceRequired ? "Wir empfehlen, die interne Batterie der Uhr bald warten zu lassen. " +
+                    // TODO "Andernfalls werden keine weiteren Behandlungen möglich sein. " +
+                    "Kontaktieren Sie dazu einfach einen unserer Techniker." : null;
+                
+                    for (var i = 1; i <= 4; i++) {
+                    var state = json.treatmentProcesses[i - 1];
+                    document.getElementById("treatment-process-" + i).innerHTML =
+                        state === "idle" ? "Leerlauf" :
+                        state === "phase1" ? "Narkose" :
+                        state === "phase2" ? "Narkose fast abgeschlossen" :
+                        state === "blocked" ? "Blockiert" : null;
+                }
+                
+                document.getElementById("total-counter").innerHTML = json.counters.total;
+                document.getElementById("filter-counter").innerHTML = json.counters.filter;
+                document.getElementById("isoflurane-counter").innerHTML = json.counters.isoflurane;
+                
+                var filterState = json.commodities.filter;
+                document.getElementById("filter-notice").innerHTML =
+                    filterState === "warn" ? "Der Filter muss bald ausgetauscht werden." :
+                    filterState === "error" ? "Der Filter muss ausgetauscht werden! " +
+                        "Bis dahin sind keine weiteren Behandlungen möglich." : null;
+                var isofluraneState = json.commodities.isoflurane;
+                document.getElementById("isoflurane-notice").innerHTML =
+                    isofluraneState === "warn" ? "Bald muss neues Isofluran nachgefüllt werden." :
+                    isofluraneState === "error" ? "Neues Isofluran muss nachgefüllt werden! " +
+                        "Bis dahin sind keine weiteren Behandlungen möglich." : null;
             },
             function() {
-                document.getElementById("status").innerHTML = "Timeout";
+                document.getElementById("status-notice").innerHTML =
+                    "Die Daten konnten nicht aktualisiert werden. " +
+                    "Überprüfen Sie, ob Ihr Endgerät korrekt mit dem <strong>PIGNAP</strong>-WLAN verbunden ist.";
             }));
     </script>
-  </head>
-  <body>
-      <div id="status"></div>
-  </body>
+    </head>
+    <body>
+        <div class="wrapper">
+        <h2>PIGNAP</h2>
+        <div id="status-notice" class="notice"></div>
+        <div id="rtc-notice" class="notice"></div>
+        <div id="filter-notice" class="notice"></div>
+        <div id="isoflurane-notice" class="notice"></div>
+        <h3 id="rtc">&nbsp;</h3>
+        <h3>Behandlungsstatus</h3>
+        <ol>
+            <li id="treatment-process-1"></li>
+            <li id="treatment-process-2"></li>
+            <li id="treatment-process-3"></li>
+            <li id="treatment-process-4"></li>
+        </ol>
+        <h3>Zähler</h3>
+        <ul>
+            <li>Insgesamt behandelt: <span id="total-counter"></span></li>
+            <li>Seit letztem Filterwechsel: <span id="filter-counter"></span></li>
+            <li>Seitdem Isofluran nachgefüllt: <span id="isoflurane-counter"></span></li>
+        </ul>
+        </div>
+    </body>
 </html>
