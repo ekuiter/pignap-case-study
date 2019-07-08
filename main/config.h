@@ -165,6 +165,11 @@ extern const char* button_pin_names[]; // only used for logging
 #define LCD_LOG_TASK_STACK_SIZE 4096
 #define LCD_LOG_TASK_PRIORITY   25
 
+// runs an HTTP server
+#define HTTP_TASK_CORE_ID    0
+#define HTTP_TASK_STACK_SIZE 4096
+#define HTTP_TASK_PRIORITY   11
+
 // starts a Wifi access point
 #define WIFI_TASK_CORE_ID    0
 #define WIFI_TASK_STACK_SIZE 4096
@@ -174,6 +179,26 @@ extern const char* button_pin_names[]; // only used for logging
 // fixes code assistance in Visual Studio Code
 #ifndef CONFIG_FREERTOS_HZ
 #define CONFIG_FREERTOS_HZ 100
+#endif
+
+#ifndef CONFIG_HTTPD_MAX_REQ_HDR_LEN
+#define CONFIG_HTTPD_MAX_REQ_HDR_LEN 512
+#endif
+
+#ifndef CONFIG_HTTPD_MAX_URI_LEN
+#define CONFIG_HTTPD_MAX_URI_LEN 512
+#endif
+
+#ifndef CONFIG_ESP32_WIFI_STATIC_RX_BUFFER_NUM
+#define CONFIG_ESP32_WIFI_STATIC_RX_BUFFER_NUM 10
+#endif
+
+#ifndef CONFIG_ESP32_WIFI_DYNAMIC_RX_BUFFER_NUM
+#define CONFIG_ESP32_WIFI_DYNAMIC_RX_BUFFER_NUM 32
+#endif
+
+#ifndef CONFIG_ESP32_WIFI_TX_BUFFER_TYPE
+#define CONFIG_ESP32_WIFI_TX_BUFFER_TYPE 1
 #endif
 
 #endif
