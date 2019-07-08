@@ -1,9 +1,59 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>PIGNAP</title>
-    </head>
-    <body>
-        Hello from index.html!
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PIGNAP by HCP-Technology</title>
+
+    <style>
+
+    </style>
+
+    <script>
+        function onReady(fn) {
+            document.addEventListener("DOMContentLoaded", fn);
+            if (document.readyState === "interactive" || document.readyState === "complete")
+                fn();
+        }
+
+        function onInterval(ms, fn) {
+            onReady(function recurse() {
+                fn();
+                window.setTimeout(recurse, ms);
+            });
+        }
+
+        function ajaxFn(method, url, timeout, resolve, reject) {
+            var lastIssued = 0;
+            return function() {
+                var thisIssued = lastIssued = +new Date();
+
+                loading = true;
+                var xhr = new XMLHttpRequest();
+                xhr.timeout = timeout;
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200)
+                        resolve(this.responseText);
+                };
+                xhr.ontimeout = function() {
+                    if (thisIssued === lastIssued)
+                        reject();
+                };
+
+                xhr.open(method, url, true);
+                xhr.send();
+            };
+        }
+
+        onInterval(1000, ajaxFn("GET", "/status.json", 800,
+            function(data) {
+                document.getElementById("status").innerHTML = data;
+            },
+            function() {
+                document.getElementById("status").innerHTML = "Timeout";
+            }));
+    </script>
+  </head>
+  <body>
+      <div id="status"></div>
+  </body>
 </html>

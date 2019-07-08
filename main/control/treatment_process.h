@@ -5,7 +5,12 @@ typedef enum {
     PIGLET_INSERTED, PIGLET_REMOVED, BLOCK, UNBLOCK
 } treatment_process_event_t;
 
-void treatment_process_init();
+typedef enum {
+    IDLE, PHASE_1, PHASE_2, BLOCKED
+} treatment_process_state_t;
+
 void treatment_process_send(int idx, treatment_process_event_t ev);
+treatment_process_state_t treatment_process_get_state(int idx);
+void treatment_process_init();
 
 #endif
