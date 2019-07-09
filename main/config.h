@@ -127,9 +127,12 @@ extern const char* button_pin_names[]; // only used for logging
 // The device should be turned on not too long after flashing to avoid time drift!
 
 // WIFI
-#define WIFI_SSID            "PIGNAP"
-#define WIFI_PSK             ***REMOVED***
-#define WIFI_MAX_CONNECTIONS 5
+#define WIFI_SETTING_BUF_LEN    48
+
+// WIFI ACCESS POINT
+#define WIFI_AP_SSID            "PIGNAP"
+#define WIFI_DEFAULT_AP_PSK     ***REMOVED***
+#define WIFI_AP_MAX_CONNECTIONS 5
 
 // TASKS
 // Control tasks are pinned to core 1, monitoring tasks to core 0.
