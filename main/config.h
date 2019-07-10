@@ -134,6 +134,12 @@ extern const char* button_pin_names[]; // only used for logging
 #define WIFI_AP_DEFAULT_PSK     ***REMOVED***
 #define WIFI_AP_MAX_CONNECTIONS 5
 
+// WIFI STATION
+#define WIFI_STA_HOSTNAME       "pignap"
+#define WIFI_STA_DEFAULT_SSID   ""
+#define WIFI_STA_DEFAULT_PSK    ""
+#define WIFI_STA_MAX_RETRIES    5
+
 // TASKS
 // Control tasks are pinned to core 1, monitoring tasks to core 0.
 // This guarantees a separation of concerns. The default system loop,
