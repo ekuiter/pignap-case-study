@@ -131,7 +131,7 @@ extern const char* button_pin_names[]; // only used for logging
 
 // WIFI ACCESS POINT
 #define WIFI_AP_SSID            "PIGNAP"
-#define WIFI_DEFAULT_AP_PSK     ***REMOVED***
+#define WIFI_AP_DEFAULT_PSK     ***REMOVED***
 #define WIFI_AP_MAX_CONNECTIONS 5
 
 // TASKS
@@ -179,6 +179,8 @@ extern const char* button_pin_names[]; // only used for logging
 #define WIFI_TASK_PRIORITY   10
 
 // MISC
+#define MAIN_HEAP_INFO_INTERVAL 60
+
 // fixes code assistance in Visual Studio Code
 #ifndef CONFIG_FREERTOS_HZ
 #define CONFIG_FREERTOS_HZ 100
