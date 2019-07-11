@@ -2,6 +2,7 @@
 #define WIFI_H
 
 #include "esp_wifi.h"
+#include "lwip/ip4_addr.h"
 
 typedef enum {
     DISCONNECTED, CONNECTING, RETRYING, CONNECTED
