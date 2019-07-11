@@ -28,7 +28,7 @@ Manual Usage
   - "make" builds the project (on the first time, this takes a while)
   - "make flash" flashes it to the ESP32
   - "make monitor" opens a serial console
-  - "make erase_flash" erases the flash memory, which resets all Wifi settings to defaults (afterwards, run "make flash")
+  - "make erase_flash" erases the flash memory, which resets all Wifi settings (and currently, the treatment history) to defaults (afterwards, run "make flash")
 - To exit the Linux shell, run "exit". After that, stop the VM with "vagrant halt".
 
 Flashing

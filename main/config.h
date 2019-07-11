@@ -140,6 +140,12 @@ extern const char* button_pin_names[]; // only used for logging
 #define WIFI_STA_DEFAULT_PSK    ""
 #define WIFI_STA_MAX_RETRIES    5
 
+// MEMORY
+#define MEM_CELL_NUM      60 // 366
+#define MEM_CELL_DEFAULT  0
+#define MEM_INDEX_DEFAULT 0
+#define MEM_CELLS_PER_ROW 20
+
 // TASKS
 // Control tasks are pinned to core 1, monitoring tasks to core 0.
 // This guarantees a separation of concerns. The default system loop,
