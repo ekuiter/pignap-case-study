@@ -126,6 +126,8 @@ extern const char* button_pin_names[]; // only used for logging
 // - if turned off and on again (not reset), no LEDs should blink
 // The device should be turned on not too long after flashing to avoid time drift!
 
+extern const char* rtc_compile_date, * rtc_compile_time; // used for resetting the RTC
+
 // WIFI
 #define WIFI_SETTING_BUF_LEN    48
 

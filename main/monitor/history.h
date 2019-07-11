@@ -3,6 +3,7 @@
 
 #include "../lib/rtc.h"
 
+void history_init();
 void history_read_begin();
 uint16_t history_read_next(rtc_date_t* date, uint16_t* counter);
 void history_read_today(uint16_t* counter);
