@@ -13,6 +13,7 @@ void _rtc_init(i2c_dev_t* dev);
 bool rtc_lost_power(i2c_dev_t* dev);
 bool rtc_is_maintenance_required(i2c_dev_t* dev);
 rtc_date_t rtc_date_add(rtc_date_t date, int days);
+uint16_t rtc_date_subtract(rtc_date_t date1, rtc_date_t date2);
 void rtc_reset_time(i2c_dev_t* dev);
 void rtc_get_time(i2c_dev_t* dev, struct tm* t);
 void rtc_get_date(i2c_dev_t* dev, rtc_date_t* date);
