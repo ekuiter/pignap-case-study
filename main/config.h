@@ -160,6 +160,7 @@ extern const char* rtc_compile_date, * rtc_compile_time; // used for resetting t
 #define MEM_CELLS_PER_ROW              20
 #define MEM_DUMP_LINE_BUF_LEN          128
 #define MEM_DUMP_BUF_LEN               3000
+#define MEM_CSV_ROW_LEN                20
 
 // HISTORY
 #define HISTORY_INVALIDATE_INTERVAL 60
