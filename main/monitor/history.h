@@ -3,14 +3,20 @@
 
 #include "../lib/rtc.h"
 
+typedef struct {
+    rtc_date_t today_date;
+    uint16_t today, filter, isoflurane;
+} history_counters_t;
+
 void history_init();
 void history_reset();
+bool history_invalidated();
+void history_commit();
+history_counters_t history_get_counters();
+history_counters_t history_increment_counters();
+history_counters_t history_reset_filter_counter();
+history_counters_t history_reset_isoflurane_counter();
 void history_read_begin();
 int history_read_next(rtc_date_t* date, uint16_t* counter);
-void history_read_today(uint16_t* counter);
-void history_write_today(uint16_t counter);
-// TODO: take special care that if a day passes while the device is on, today's counter is flushed to memory
-esp_err_t history_read(rtc_date_t date, uint16_t* counter); // TODO: ?
-esp_err_t history_write(rtc_date_t date, uint16_t counter);
 
 #endif

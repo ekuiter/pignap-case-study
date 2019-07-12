@@ -118,6 +118,8 @@ extern const char* button_pin_names[]; // only used for logging
 // After this number of years, all LEDs on the device blink 2 times after booting.
 #define RTC_MAINTENANCE_AFTER_YEARS 10
 // If the battery is low, all LEDs on the device blink 4 times after booting.
+// To replace the battery and retain the current RTC time, replace the battery
+// while the device is turned on.
 // To replace the battery and force an update of the RTC time:
 // - flash the software
 // - turn off the device
@@ -155,6 +157,9 @@ extern const char* rtc_compile_date, * rtc_compile_time; // used for resetting t
 #define MEM_CELLS_PER_ROW              20
 #define MEM_DUMP_LINE_BUF_LEN          128
 #define MEM_DUMP_BUF_LEN               3000
+
+// HISTORY
+#define HISTORY_INVALIDATE_INTERVAL 60
 
 // TASKS
 // Control tasks are pinned to core 1, monitoring tasks to core 0.

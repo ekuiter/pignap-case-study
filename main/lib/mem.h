@@ -10,6 +10,7 @@ esp_err_t _mem_init(uint16_t cell_default, uint16_t idx_default, rtc_date_t date
     uint16_t filter_counter, uint16_t isoflurane_counter);
 esp_err_t mem_reset();
 bool mem_is_readonly();
+void mem_set_readonly(bool _readonly);
 esp_err_t mem_read_cell(uint16_t cell, uint16_t* counter);
 esp_err_t mem_write_cell(uint16_t cell, uint16_t counter);
 esp_err_t mem_read_index(uint16_t* idx);
