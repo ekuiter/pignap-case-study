@@ -8,6 +8,10 @@ typedef enum {
     DISCONNECTED, CONNECTING, RETRYING, CONNECTED
 } wifi_sta_state_t;
 
+typedef enum {
+    SHUTDOWN_WIFI
+} wifi_event_t;
+
 typedef struct {
     char ssid[33];
     wifi_auth_mode_t authmode;
@@ -22,6 +26,7 @@ ip4_addr_t wifi_get_sta_ip();
 void wifi_set_config(char* ap_psk, char* sta_ssid, char* sta_psk, bool init);
 void wifi_scan_aps();
 wifi_ap_t* wifi_get_scanned_aps(size_t* scanned_ap_num);
+void wifi_send(wifi_event_t ev);
 void _wifi_init();
 
 #endif

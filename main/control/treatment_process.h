@@ -2,7 +2,7 @@
 #define TREATMENT_PROCESS_H
 
 typedef enum {
-    PIGLET_INSERTED, PIGLET_REMOVED, BLOCK, UNBLOCK
+    PIGLET_INSERTED, PIGLET_REMOVED, BLOCK, UNBLOCK, SHUTDOWN_TREATMENT
 } treatment_process_event_t;
 
 typedef enum {
