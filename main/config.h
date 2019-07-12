@@ -113,13 +113,14 @@ extern const char* button_pin_names[]; // only used for logging
 // Note that we ignore daylight saving time, this means today's treatments from
 // midnight to 1am are assigned to yesterday - which should not be a problem.
 #define RTC_TIMEZONE_OFFSET         1
+// Defines a minimum valid year for the RTC time. This is used to detect whether
+// the battery is low / has been reset.
+#define RTC_MINIMUM_VALID_YEAR      2019
 // This defines a number of years after which the device should be maintained, that is,
 // after how many years the battery should be replaced and the device re-flashed.
 // After this number of years, all LEDs on the device blink 2 times after booting.
 #define RTC_MAINTENANCE_AFTER_YEARS 10
 // If the battery is low, all LEDs on the device blink 4 times after booting.
-// To replace the battery and retain the current RTC time, replace the battery
-// while the device is turned on.
 // To replace the battery and force an update of the RTC time:
 // - flash the software
 // - turn off the device
@@ -127,6 +128,8 @@ extern const char* button_pin_names[]; // only used for logging
 // - turn on the device, all LEDs should blink 4 times
 // - if turned off and on again (not reset), no LEDs should blink
 // The device should be turned on not too long after flashing to avoid time drift!
+// Have a look at the administration page (http://192.168.4.1/admin) to see if
+// RTC and history memory are correct.
 
 extern const char* rtc_compile_date, * rtc_compile_time; // used for resetting the RTC
 
