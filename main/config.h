@@ -9,7 +9,6 @@
 
 extern const char* output_pin_names_development[], * output_pin_names_production[],
     * button_pin_names_development[], * button_pin_names_production[]; // only used for logging
-extern const char* rtc_compile_date, * rtc_compile_time; // used for resetting the RTC
 
 // OUTPUTS
 #ifdef IS_PRODUCTION
