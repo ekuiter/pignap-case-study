@@ -1,7 +1,7 @@
-PIGNAP
+Pignap
 ======
 
-PIGNAP is developed inside a Linux virtual machine (VM) with Vagrant/VirtualBox. This allows much faster compile times than on Windows (1min vs. 20min. on my machine) and easy setup/reproducible builds.
+Pignap is developed inside a Linux virtual machine (VM) with Vagrant/VirtualBox. This allows much faster compile times than on Windows (1min vs. 20min. on my machine) and easy setup/reproducible builds.
 
 Requirements
 ============
@@ -22,9 +22,9 @@ Some scripts are included for easy usage:
 Manual Usage
 ============
 
-- Open a Windows command line (cmd.exe) and navigate to the PIGNAP folder with "cd".
+- Open a Windows command line (cmd.exe) and navigate to the Pignap folder with "cd".
 - Run "vagrant up". This starts the VM. On the first time, ESP-IDF is installed which may take a while.
-- Run "vagrant ssh". This starts a Linux shell inside the VM. From this shell, PIGNAP can be flashed and compiled:
+- Run "vagrant ssh". This starts a Linux shell inside the VM. From this shell, Pignap can be flashed and compiled:
   - "make" builds the project (on the first time, this takes a while)
   - "make flash" flashes it to the ESP32
   - "make monitor" opens a serial console
@@ -42,6 +42,6 @@ If flashing fails with the error message "Failed to connect to ESP32: Timed out 
 Resetting the VM
 ================
 
-In the PIGNAP folder, run "vagrant destroy". This will completely remove the VM.
+In the Pignap folder, run "vagrant destroy". This will completely remove the VM.
 Then remove the ".vagrant" and "build" folders.
 Run "vagrant up" to reinitialize the VM.
