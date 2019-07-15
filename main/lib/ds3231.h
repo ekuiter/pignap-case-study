@@ -14,7 +14,7 @@
 #ifndef __DS3231_H__
 #define __DS3231_H__
 
-#include <time.h>
+#include "wtime/wtime.h"
 #include <stdbool.h>
 #include "i2cdev.h"
 
@@ -71,7 +71,7 @@ typedef enum {
  * I suggest using GMT and applying timezone and DST when read back.
  * @return ESP_OK to indicate success
  */
-esp_err_t ds3231_set_time(i2c_dev_t *dev, struct tm *time);
+esp_err_t ds3231_set_time(i2c_dev_t *dev, wtm_t *time);
 
 /**
  * @brief Set alarms
@@ -85,8 +85,8 @@ esp_err_t ds3231_set_time(i2c_dev_t *dev, struct tm *time);
  * if you want to enable interrupts for the alarms you need to do that separately
  * @return ESP_OK to indicate success
  */
-esp_err_t ds3231_set_alarm(i2c_dev_t *dev, ds3231_alarm_t alarms, struct tm *time1,
-        ds3231_alarm1_rate_t option1, struct tm *time2, ds3231_alarm2_rate_t option2);
+esp_err_t ds3231_set_alarm(i2c_dev_t *dev, ds3231_alarm_t alarms, wtm_t *time1,
+        ds3231_alarm1_rate_t option1, wtm_t *time2, ds3231_alarm2_rate_t option2);
 
 /**
  * @brief Check if oscillator has previously stopped, e.g. no power/battery or disabled
@@ -209,7 +209,7 @@ esp_err_t ds3231_get_temp_float(i2c_dev_t *dev, float *temp);
  * @param[out] time RTC time
  * @return ESP_OK to indicate success
  */
-esp_err_t ds3231_get_time(i2c_dev_t *dev, struct tm *time);
+esp_err_t ds3231_get_time(i2c_dev_t *dev, wtm_t *time);
 
 #ifdef	__cplusplus
 }
