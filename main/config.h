@@ -5,23 +5,26 @@
 #include "lib/button.h"
 
 // comment this out to compile the code for my development board
-// #define IS_PRODUCTION
+#define IS_PRODUCTION
+
+// define this to check output and button GPIOs
+#define GPIO_TEST
 
 extern const char* output_pin_names_development[], * output_pin_names_production[],
     * button_pin_names_development[], * button_pin_names_production[]; // only used for logging
 
 // OUTPUTS
 #ifdef IS_PRODUCTION
-#define OUTPUT_GPIO_LED_1_GREEN       14
-#define OUTPUT_GPIO_LED_1_RED         12
-#define OUTPUT_GPIO_LED_2_GREEN       13
-#define OUTPUT_GPIO_LED_2_RED         15
-#define OUTPUT_GPIO_LED_3_GREEN       2
-#define OUTPUT_GPIO_LED_3_RED         4
-#define OUTPUT_GPIO_LED_4_GREEN       23
-#define OUTPUT_GPIO_LED_4_RED         19
-#define OUTPUT_GPIO_LED_FILTER_FULL   9
-#define OUTPUT_GPIO_LED_NO_ISOFLURANE 10
+#define OUTPUT_GPIO_LED_1_GREEN       12
+#define OUTPUT_GPIO_LED_1_RED         14
+#define OUTPUT_GPIO_LED_2_GREEN       15
+#define OUTPUT_GPIO_LED_2_RED         13
+#define OUTPUT_GPIO_LED_3_GREEN       4
+#define OUTPUT_GPIO_LED_3_RED         2
+#define OUTPUT_GPIO_LED_4_GREEN       19
+#define OUTPUT_GPIO_LED_4_RED         23
+#define OUTPUT_GPIO_LED_FILTER_FULL   10
+#define OUTPUT_GPIO_LED_NO_ISOFLURANE 9
 #define OUTPUT_GPIO_MAGNETIC_VALVE_1  25
 #define OUTPUT_GPIO_MAGNETIC_VALVE_2  26
 #define OUTPUT_GPIO_MAGNETIC_VALVE_3  32
@@ -62,9 +65,7 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 // inverted means: HIGH = output off, LOW = output on
 #ifdef IS_PRODUCTION
 #define OUTPUT_INVERTED_SELECT \
-    (PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_1) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_2) \
-    | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_3) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_4) \
-    | PIN_BIT(OUTPUT_GPIO_COUNTER))
+    (PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL) | PIN_BIT(OUTPUT_GPIO_LED_NO_ISOFLURANE))
 #else
 #define OUTPUT_INVERTED_SELECT \
     (PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_1) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_2) \
@@ -84,8 +85,8 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define BUTTON_GPIO_REED_SWITCH_2    38
 #define BUTTON_GPIO_REED_SWITCH_3    34
 #define BUTTON_GPIO_REED_SWITCH_4    35
-#define BUTTON_GPIO_RESET_FILTER     27
-#define BUTTON_GPIO_RESET_ISOFLURANE 0
+#define BUTTON_GPIO_RESET_FILTER     0
+#define BUTTON_GPIO_RESET_ISOFLURANE 27
 #define BUTTON_GPIO_VOLTAGE_MONITOR  5
 #define BUTTON_PIN_NAMES             button_pin_names_production
 #else
@@ -96,7 +97,7 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define BUTTON_GPIO_RESET_FILTER     27
 #define BUTTON_GPIO_RESET_ISOFLURANE 0
 #define BUTTON_GPIO_VOLTAGE_MONITOR  5
-#define BUTTON_PIN_NAMES             button_pin_names_production
+#define BUTTON_PIN_NAMES             button_pin_names_development
 #endif
 
 // bit mask that configures buttons as input pins
@@ -112,7 +113,7 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 // when the voltage drops and the device must save its data
 #ifdef IS_PRODUCTION
 #define BUTTON_INVERTED_SELECT \
-    (PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE) | PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
+    (PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
 #else
 #define BUTTON_INVERTED_SELECT \
     (PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE) | PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
@@ -138,15 +139,15 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define CONTROLLER_FILTER_MAX           (CONTROLLER_FILTER_WARN + CONTROLLER_FILTER_TOLERANCE)
 #define CONTROLLER_ISOFLURANE_MAX       (CONTROLLER_ISOFLURANE_WARN + CONTROLLER_ISOFLURANE_TOLERANCE)
 #ifdef IS_PRODUCTION
-#define CONTROLLER_FILTER_WARN          8
-#define CONTROLLER_ISOFLURANE_WARN      10
-#define CONTROLLER_FILTER_TOLERANCE     2
-#define CONTROLLER_ISOFLURANE_TOLERANCE 2
-#else
 #define CONTROLLER_FILTER_WARN          250
 #define CONTROLLER_ISOFLURANE_WARN      250
 #define CONTROLLER_FILTER_TOLERANCE     30
 #define CONTROLLER_ISOFLURANE_TOLERANCE 30
+#else
+#define CONTROLLER_FILTER_WARN          8
+#define CONTROLLER_ISOFLURANE_WARN      10
+#define CONTROLLER_FILTER_TOLERANCE     2
+#define CONTROLLER_ISOFLURANE_TOLERANCE 2
 #endif
 
 // I2C
