@@ -8,7 +8,7 @@
 #define IS_PRODUCTION
 
 // define this to check output and button GPIOs
-#define GPIO_TEST
+// #define GPIO_TEST
 
 extern const char* output_pin_names_development[], * output_pin_names_production[],
     * button_pin_names_development[], * button_pin_names_production[]; // only used for logging
@@ -104,7 +104,7 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define BUTTON_PIN_SELECT \
     (PIN_BIT(BUTTON_GPIO_REED_SWITCH_1)  | PIN_BIT(BUTTON_GPIO_REED_SWITCH_2) \
     | PIN_BIT(BUTTON_GPIO_REED_SWITCH_3) | PIN_BIT(BUTTON_GPIO_REED_SWITCH_4) \
-    | PIN_BIT(BUTTON_GPIO_RESET_FILTER) | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE) \
+    | PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE) \
     | PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
 
 // bit mask that determines which buttons have inverted logic
@@ -113,10 +113,22 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 // when the voltage drops and the device must save its data
 #ifdef IS_PRODUCTION
 #define BUTTON_INVERTED_SELECT \
-    (PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
+    (PIN_BIT(BUTTON_GPIO_REED_SWITCH_1)  | PIN_BIT(BUTTON_GPIO_REED_SWITCH_2) \
+    | PIN_BIT(BUTTON_GPIO_REED_SWITCH_3) | PIN_BIT(BUTTON_GPIO_REED_SWITCH_4) \
+    | PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE) \
+    | PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
 #else
 #define BUTTON_INVERTED_SELECT \
     (PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE) | PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
+#endif
+
+// bit mask that determines which buttons should have internal pull up resistor enabled
+#ifdef IS_PRODUCTION
+#define BUTTON_PULLUP_SELECT \
+    (PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
+#else
+#define BUTTON_PULLUP_SELECT \
+    (0)
 #endif
 
 // TREATMENT PROCESS
