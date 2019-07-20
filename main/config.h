@@ -4,17 +4,19 @@
 #include "lib/output.h"
 #include "lib/button.h"
 
-// comment this out to compile the code for my development board
-#define IS_PRODUCTION
+// 1 = my development board
+// 2 = first circuit board
+// 3 = updated circuit board (TODO: swap GPIO0 and (now free) GPIO5, to avoid BOOT button logic)
+#define BOARD_VERSION 2
 
 // define this to check output and button GPIOs
 // #define GPIO_TEST
 
-extern const char* output_pin_names_development[], * output_pin_names_production[],
-    * button_pin_names_development[], * button_pin_names_production[]; // only used for logging
+extern const char* output_pin_names_v1[], * output_pin_names_v2[],
+    * button_pin_names_v1[], * button_pin_names_v2[]; // only used for logging
 
 // OUTPUTS
-#ifdef IS_PRODUCTION
+#if BOARD_VERSION == 2
 #define OUTPUT_GPIO_LED_1_GREEN       12
 #define OUTPUT_GPIO_LED_1_RED         14
 #define OUTPUT_GPIO_LED_2_GREEN       15
@@ -30,8 +32,8 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define OUTPUT_GPIO_MAGNETIC_VALVE_3  32
 #define OUTPUT_GPIO_MAGNETIC_VALVE_4  33
 #define OUTPUT_GPIO_COUNTER           18
-#define OUTPUT_PIN_NAMES              output_pin_names_production
-#else
+#define OUTPUT_PIN_NAMES              output_pin_names_v2
+#elif BOARD_VERSION == 1
 #define OUTPUT_GPIO_LED_1_GREEN       14
 #define OUTPUT_GPIO_LED_1_RED         12
 #define OUTPUT_GPIO_LED_2_GREEN       13
@@ -47,7 +49,7 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define OUTPUT_GPIO_MAGNETIC_VALVE_3  32
 #define OUTPUT_GPIO_MAGNETIC_VALVE_4  33
 #define OUTPUT_GPIO_COUNTER           18
-#define OUTPUT_PIN_NAMES              output_pin_names_development
+#define OUTPUT_PIN_NAMES              output_pin_names_v1
 #endif
 
 // bit mask that configures output pins
@@ -63,10 +65,10 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 
 // bit mask that determines which outputs have inverted logic
 // inverted means: HIGH = output off, LOW = output on
-#ifdef IS_PRODUCTION
+#if BOARD_VERSION == 2
 #define OUTPUT_INVERTED_SELECT \
     (PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL) | PIN_BIT(OUTPUT_GPIO_LED_NO_ISOFLURANE))
-#else
+#elif BOARD_VERSION == 1
 #define OUTPUT_INVERTED_SELECT \
     (PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_1) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_2) \
     | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_3) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_4) \
@@ -80,22 +82,22 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define OUTPUT_CHANNEL_LED_4_RED LEDC_CHANNEL_4
 
 // BUTTONS
-#ifdef IS_PRODUCTION
+#if BOARD_VERSION == 2
 #define BUTTON_GPIO_REED_SWITCH_1    37
 #define BUTTON_GPIO_REED_SWITCH_2    38
 #define BUTTON_GPIO_REED_SWITCH_3    34
 #define BUTTON_GPIO_REED_SWITCH_4    35
 #define BUTTON_GPIO_RESET_FILTER     0
 #define BUTTON_GPIO_RESET_ISOFLURANE 27
-#define BUTTON_PIN_NAMES             button_pin_names_production
-#else
+#define BUTTON_PIN_NAMES             button_pin_names_v2
+#elif BOARD_VERSION == 1
 #define BUTTON_GPIO_REED_SWITCH_1    37
 #define BUTTON_GPIO_REED_SWITCH_2    38
 #define BUTTON_GPIO_REED_SWITCH_3    34
 #define BUTTON_GPIO_REED_SWITCH_4    35
 #define BUTTON_GPIO_RESET_FILTER     27
 #define BUTTON_GPIO_RESET_ISOFLURANE 0
-#define BUTTON_PIN_NAMES             button_pin_names_development
+#define BUTTON_PIN_NAMES             button_pin_names_v1
 #endif
 
 // bit mask that configures buttons as input pins
@@ -106,21 +108,21 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 
 // bit mask that determines which buttons have inverted logic
 // inverted means: HIGH = button up, LOW = button down
-#ifdef IS_PRODUCTION
+#if BOARD_VERSION == 2
 #define BUTTON_INVERTED_SELECT \
     (PIN_BIT(BUTTON_GPIO_REED_SWITCH_1)  | PIN_BIT(BUTTON_GPIO_REED_SWITCH_2) \
     | PIN_BIT(BUTTON_GPIO_REED_SWITCH_3) | PIN_BIT(BUTTON_GPIO_REED_SWITCH_4) \
     | PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
-#else
+#elif BOARD_VERSION == 1
 #define BUTTON_INVERTED_SELECT \
     (PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
 #endif
 
 // bit mask that determines which buttons should have internal pull up resistor enabled
-#ifdef IS_PRODUCTION
+#if BOARD_VERSION == 2
 #define BUTTON_PULLUP_SELECT \
     (PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
-#else
+#elif BOARD_VERSION == 1
 #define BUTTON_PULLUP_SELECT \
     (0)
 #endif
@@ -131,10 +133,10 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define TREATMENT_LED_BLINK_RESOLUTION LEDC_TIMER_10_BIT
 #define TREATMENT_LED_BLINK_FREQUENCY  1
 #define TREATMENT_LED_BLINK_DUTY       512
-#ifdef IS_PRODUCTION
+#if BOARD_VERSION == 2
 #define TREATMENT_PHASE_1_DURATION     75
 #define TREATMENT_PHASE_2_DURATION     15
-#else
+#elif BOARD_VERSION == 1
 #define TREATMENT_PHASE_1_DURATION     2
 #define TREATMENT_PHASE_2_DURATION     2
 #endif
@@ -144,12 +146,12 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define CONTROLLER_COUNTER_OFF_DURATION 500
 #define CONTROLLER_FILTER_MAX           (CONTROLLER_FILTER_WARN + CONTROLLER_FILTER_TOLERANCE)
 #define CONTROLLER_ISOFLURANE_MAX       (CONTROLLER_ISOFLURANE_WARN + CONTROLLER_ISOFLURANE_TOLERANCE)
-#ifdef IS_PRODUCTION
+#if BOARD_VERSION == 2
 #define CONTROLLER_FILTER_WARN          250
 #define CONTROLLER_ISOFLURANE_WARN      250
 #define CONTROLLER_FILTER_TOLERANCE     30
 #define CONTROLLER_ISOFLURANE_TOLERANCE 30
-#else
+#elif BOARD_VERSION == 1
 #define CONTROLLER_FILTER_WARN          8
 #define CONTROLLER_ISOFLURANE_WARN      10
 #define CONTROLLER_FILTER_TOLERANCE     2
@@ -163,7 +165,7 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 
 // LCD
 // comment the next line out to remove logging to LCD display
-#ifndef IS_PRODUCTION
+#if BOARD_VERSION == 1
 #define LCD_ENABLED
 #endif
 #define LCD_I2C_ADDRESS 0x27
