@@ -87,7 +87,6 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define BUTTON_GPIO_REED_SWITCH_4    35
 #define BUTTON_GPIO_RESET_FILTER     0
 #define BUTTON_GPIO_RESET_ISOFLURANE 27
-#define BUTTON_GPIO_VOLTAGE_MONITOR  5
 #define BUTTON_PIN_NAMES             button_pin_names_production
 #else
 #define BUTTON_GPIO_REED_SWITCH_1    37
@@ -96,7 +95,6 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define BUTTON_GPIO_REED_SWITCH_4    35
 #define BUTTON_GPIO_RESET_FILTER     27
 #define BUTTON_GPIO_RESET_ISOFLURANE 0
-#define BUTTON_GPIO_VOLTAGE_MONITOR  5
 #define BUTTON_PIN_NAMES             button_pin_names_development
 #endif
 
@@ -104,22 +102,18 @@ extern const char* output_pin_names_development[], * output_pin_names_production
 #define BUTTON_PIN_SELECT \
     (PIN_BIT(BUTTON_GPIO_REED_SWITCH_1)  | PIN_BIT(BUTTON_GPIO_REED_SWITCH_2) \
     | PIN_BIT(BUTTON_GPIO_REED_SWITCH_3) | PIN_BIT(BUTTON_GPIO_REED_SWITCH_4) \
-    | PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE) \
-    | PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
+    | PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
 
 // bit mask that determines which buttons have inverted logic
 // inverted means: HIGH = button up, LOW = button down
-// the voltage monitor is considered a button too, it is "pressed down"
-// when the voltage drops and the device must save its data
 #ifdef IS_PRODUCTION
 #define BUTTON_INVERTED_SELECT \
     (PIN_BIT(BUTTON_GPIO_REED_SWITCH_1)  | PIN_BIT(BUTTON_GPIO_REED_SWITCH_2) \
     | PIN_BIT(BUTTON_GPIO_REED_SWITCH_3) | PIN_BIT(BUTTON_GPIO_REED_SWITCH_4) \
-    | PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE) \
-    | PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
+    | PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
 #else
 #define BUTTON_INVERTED_SELECT \
-    (PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE) | PIN_BIT(BUTTON_GPIO_VOLTAGE_MONITOR))
+    (PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
 #endif
 
 // bit mask that determines which buttons should have internal pull up resistor enabled

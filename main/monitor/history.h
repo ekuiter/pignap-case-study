@@ -10,8 +10,7 @@ typedef struct {
 
 void history_init();
 void history_reset();
-bool history_invalidated();
-void history_commit();
+void history_update();
 history_counters_t history_get_counters();
 history_counters_t history_increment_counters();
 history_counters_t history_reset_filter_counter();

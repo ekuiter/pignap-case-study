@@ -2,7 +2,7 @@
 #define CONTROLLER_H
 
 typedef enum {
-    TREATMENT_DONE, RESET_FILTER, RESET_ISOFLURANE, POWER_OFF, POWER_RESTORED
+    TREATMENT_DONE, RESET_FILTER, RESET_ISOFLURANE
 } controller_event_t;
 
 typedef enum {
