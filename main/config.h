@@ -203,9 +203,13 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define WIFI_SETTING_BUF_LEN    48
 
 // WIFI ACCESS POINT
-#define WIFI_AP_SSID            "Pignap"
-#define WIFI_AP_DEFAULT_PSK     ***REMOVED***
-#define WIFI_AP_MAX_CONNECTIONS 5
+#define WIFI_MAC_FORMAT          "%02X:%02X:%02X:%02X:%02X:%02X"
+#define WIFI_MAC_SHORT_FORMAT    "%02X:%02X:%02X"
+#define WIFI_MAC_ARGS(mac)       (mac)[0], (mac)[1], (mac)[2], (mac)[3], (mac)[4], (mac)[5]
+#define WIFI_MAC_SHORT_ARGS(mac) (mac)[3], (mac)[4], (mac)[5]
+#define WIFI_AP_SSID_FORMAT      "Pignap " WIFI_MAC_SHORT_FORMAT
+#define WIFI_AP_DEFAULT_PSK      ***REMOVED***
+#define WIFI_AP_MAX_CONNECTIONS  5
 
 // WIFI STATION
 #define WIFI_STA_HOSTNAME       "pignap"
