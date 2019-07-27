@@ -8,7 +8,7 @@ typedef struct {
     uint16_t today, filter, isoflurane;
 } history_counters_t;
 
-void history_init();
+void history_init(bool reset);
 void history_reset();
 void history_update();
 history_counters_t history_get_counters();

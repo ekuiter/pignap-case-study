@@ -167,7 +167,6 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define I2C_FREQUENCY 100000
 
 // LCD
-// comment the next line out to remove logging to LCD display
 #if BOARD_VERSION == 1
 #define LCD_ENABLED
 #endif
