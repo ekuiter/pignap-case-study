@@ -9,6 +9,9 @@
 // 3 = updated circuit board (TODO: swap GPIO0 and (now free) GPIO5, to avoid BOOT button logic)
 #define BOARD_VERSION 2
 
+// if not defined, treatment durations are shorter
+// #define IS_PRODUCTION
+
 // define this to check output and button GPIOs
 // #define GPIO_TEST
 
@@ -133,10 +136,10 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define TREATMENT_LED_BLINK_RESOLUTION LEDC_TIMER_10_BIT
 #define TREATMENT_LED_BLINK_FREQUENCY  1
 #define TREATMENT_LED_BLINK_DUTY       512
-#if BOARD_VERSION == 2
+#ifdef IS_PRODUCTION
 #define TREATMENT_PHASE_1_DURATION     75
 #define TREATMENT_PHASE_2_DURATION     15
-#elif BOARD_VERSION == 1
+#else
 #define TREATMENT_PHASE_1_DURATION     2
 #define TREATMENT_PHASE_2_DURATION     2
 #endif
@@ -146,12 +149,12 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define CONTROLLER_COUNTER_OFF_DURATION 500
 #define CONTROLLER_FILTER_MAX           (CONTROLLER_FILTER_WARN + CONTROLLER_FILTER_TOLERANCE)
 #define CONTROLLER_ISOFLURANE_MAX       (CONTROLLER_ISOFLURANE_WARN + CONTROLLER_ISOFLURANE_TOLERANCE)
-#if BOARD_VERSION == 2
+#ifdef IS_PRODUCTION
 #define CONTROLLER_FILTER_WARN          250
 #define CONTROLLER_ISOFLURANE_WARN      250
 #define CONTROLLER_FILTER_TOLERANCE     30
 #define CONTROLLER_ISOFLURANE_TOLERANCE 30
-#elif BOARD_VERSION == 1
+#else
 #define CONTROLLER_FILTER_WARN          8
 #define CONTROLLER_ISOFLURANE_WARN      10
 #define CONTROLLER_FILTER_TOLERANCE     2
