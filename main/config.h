@@ -175,20 +175,22 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define LCD_NUM_ROWS    2
 
 // RTC
-#define RTC_I2C_ADDRESS             0x68
+#define RTC_I2C_ADDRESS                 0x68
 // Add an offset for our timezone CET (UTC+1).
 // Note that we ignore daylight saving time, this means today's treatments from
 // midnight to 1am are assigned to yesterday - which should not be a problem.
-#define RTC_TIMEZONE_OFFSET         1
+#define RTC_TIMEZONE_OFFSET             1
 // Defines a minimum valid year for the RTC time. This is used to detect whether
 // the battery is low / has been reset.
-#define RTC_MINIMUM_VALID_YEAR      2019
+
+// BATTERY
+#define BATTERY_MINIMUM_VALID_YEAR      2019
 // This defines a number of years after which the device should be maintained, that is,
 // after how many years the battery should be replaced and the device re-flashed.
 // After this number of years, all LEDs on the device blink 2 times after booting.
-#define RTC_MAINTENANCE_AFTER_YEARS 10
+#define BATTERY_MAINTENANCE_AFTER_YEARS 10
 // If the battery is low, all LEDs on the device blink 4 times after booting.
-// To replace the battery and force an update of the RTC time:
+// To replace the battery and force an update of the RTC time: (TODO: update this documentation)
 // - flash the software
 // - turn off the device
 // - replace the battery
@@ -199,7 +201,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 // RTC and history memory are correct.
 
 // WIFI
-#define WIFI_SETTING_BUF_LEN    48
+#define WIFI_SETTING_BUF_LEN 48
 
 // WIFI ACCESS POINT
 #define WIFI_MAC_FORMAT          "%02X:%02X:%02X:%02X:%02X:%02X"
