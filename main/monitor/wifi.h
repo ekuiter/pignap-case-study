@@ -22,5 +22,6 @@ wifi_sta_state_t wifi_get_sta_state();
 ip4_addr_t wifi_get_sta_ip();
 void wifi_set_config(char* ap_psk, char* sta_ssid, char* sta_psk, bool init);
 void _wifi_init();
+esp_err_t wifi_dump(char* dump_buf);
 
 #endif
