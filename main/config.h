@@ -189,16 +189,18 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 // after how many years the battery should be replaced and the device re-flashed.
 // After this number of years, all LEDs on the device blink 2 times after booting.
 #define BATTERY_MAINTENANCE_AFTER_YEARS 10
-// If the battery is low, all LEDs on the device blink 4 times after booting.
-// To replace the battery and force an update of the RTC time: (TODO: update this documentation)
-// - flash the software
-// - turn off the device
-// - replace the battery
-// - turn on the device, all LEDs should blink 4 times
-// - if turned off and on again (not reset), no LEDs should blink
-// The device should be turned on not too long after flashing to avoid time drift!
-// Have a look at the administration page (http://192.168.4.1/admin) to see if
-// RTC and history memory are correct.
+// see PHP script
+#define BATTERY_CODE_ENCODING { \
+        ***REMOVED*** \
+        ***REMOVED*** \
+        ***REMOVED*** \
+    }
+#define BATTERY_PIN_SALTS { \
+        ***REMOVED*** \
+		***REMOVED*** \
+		"***REMOVED*** \
+		***REMOVED*** \
+    }
 
 // WIFI
 #define WIFI_SETTING_BUF_LEN 48
