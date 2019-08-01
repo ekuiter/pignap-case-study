@@ -190,6 +190,8 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 // After this number of years, all LEDs on the device blink 2 times after booting.
 #define BATTERY_MAINTENANCE_AFTER_YEARS 10
 // see PHP script
+#define BATTERY_MAC_FORMAT              "%02X:%02X:%02X"
+#define BATTERY_MAC_ARGS(mac)           (mac)[3], (mac)[4], (mac)[5]
 #define BATTERY_CODE_ENCODING { \
         ***REMOVED*** \
         ***REMOVED*** \

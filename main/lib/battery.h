@@ -12,5 +12,6 @@ char* battery_get_code();
 char* battery_get_pin();
 bool battery_verify_pin(char* pin);
 esp_err_t battery_dump(char* dump_buf);
+void battery_test();
 
 #endif
