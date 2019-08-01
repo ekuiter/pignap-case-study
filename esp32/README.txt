@@ -19,7 +19,7 @@ Some scripts are included for easy usage:
 - halt.bat: Stops the VM. Use this after flashing is done and the VM is no more needed.
 - reset.bat: Completely removes the VM.
 
-If flashing does not work from within the VM, install esptool.py (https://github.com/espressif/esptool) on the Windows host system and use flash_windows.bat after building the software.
+If flashing does not work from within the VM, install esptool.py (https://github.com/espressif/esptool) on the Windows host system and, after building the software, use flash_windows.bat and monitor_windows.bat.
 
 Manual Usage
 ============
