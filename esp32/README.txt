@@ -14,10 +14,12 @@ Script Usage
 
 Some scripts are included for easy usage:
 
-- flash.bat: Starts the VM (if not yet running) and flashes the software to the ESP32.
+- flash_linux.bat: Starts the VM (if not yet running) and flashes the software to the ESP32.
 - shell.bat: Starts the VM (if not yet running) and opens a shell. See below.
 - halt.bat: Stops the VM. Use this after flashing is done and the VM is no more needed.
 - reset.bat: Completely removes the VM.
+
+If flashing does not work from within the VM, install esptool.py (https://github.com/espressif/esptool) on the Windows host system and use flash_windows.bat after building the software.
 
 Manual Usage
 ============
