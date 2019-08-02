@@ -7,3 +7,5 @@ Pignap
 - `website`: source code of pignap.com
 - `flash.bat`: shortcut for flashing the software (assuming it has been built once before, and esptool.py is installed)
 - `monitor.bat`: shortcut for monitoring the software (assuming esptool.py/miniterm.py is installed)
+
+Note that at HCP, we use a different Vagrantfile (stored as esp32/Vagrantfile_HCP)!
