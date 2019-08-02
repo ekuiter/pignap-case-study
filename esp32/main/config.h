@@ -6,8 +6,9 @@
 
 // 1 = my development board
 // 2 = first circuit board
-// 3 = updated circuit board
-#define BOARD_VERSION 2
+// 3 = updated circuit board (LEDs inverted)
+// 4 = updated circuit board (IO0/5 swapped)
+#define BOARD_VERSION 3
 
 // if not defined, treatment durations are shorter
 // #define IS_PRODUCTION
@@ -15,28 +16,11 @@
 // define this to check output and button GPIOs
 // #define GPIO_TEST
 
-extern const char* output_pin_names_v1[], * output_pin_names_v2[], * output_pin_names_v3[],
-    * button_pin_names_v1[], * button_pin_names_v2[], * button_pin_names_v3[]; // only used for logging
+extern const char* output_pin_names_v1[], * output_pin_names_v2[],
+    * button_pin_names_v1[], * button_pin_names_v2[], * button_pin_names_v4[]; // only used for logging
 
 // OUTPUTS
-#if BOARD_VERSION == 3
-#define OUTPUT_GPIO_LED_1_GREEN       12
-#define OUTPUT_GPIO_LED_1_RED         14
-#define OUTPUT_GPIO_LED_2_GREEN       15
-#define OUTPUT_GPIO_LED_2_RED         13
-#define OUTPUT_GPIO_LED_3_GREEN       4
-#define OUTPUT_GPIO_LED_3_RED         2
-#define OUTPUT_GPIO_LED_4_GREEN       19
-#define OUTPUT_GPIO_LED_4_RED         23
-#define OUTPUT_GPIO_LED_FILTER_FULL   10
-#define OUTPUT_GPIO_LED_NO_ISOFLURANE 9
-#define OUTPUT_GPIO_MAGNETIC_VALVE_1  25
-#define OUTPUT_GPIO_MAGNETIC_VALVE_2  26
-#define OUTPUT_GPIO_MAGNETIC_VALVE_3  32
-#define OUTPUT_GPIO_MAGNETIC_VALVE_4  33
-#define OUTPUT_GPIO_COUNTER           18
-#define OUTPUT_PIN_NAMES              output_pin_names_v3
-#elif BOARD_VERSION == 2
+#if BOARD_VERSION == 2 || BOARD_VERSION == 3 || BOARD_VERSION == 4
 #define OUTPUT_GPIO_LED_1_GREEN       12
 #define OUTPUT_GPIO_LED_1_RED         14
 #define OUTPUT_GPIO_LED_2_GREEN       15
@@ -85,9 +69,11 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[], * output_pin_
 
 // bit mask that determines which outputs have inverted logic
 // inverted means: HIGH = output off, LOW = output on
-#if BOARD_VERSION == 3
+#if BOARD_VERSION == 3 || BOARD_VERSION == 4
 #define OUTPUT_INVERTED_SELECT \
-    (PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL) | PIN_BIT(OUTPUT_GPIO_LED_NO_ISOFLURANE))
+    (PIN_BIT(OUTPUT_GPIO_LED_1_GREEN)       | PIN_BIT(OUTPUT_GPIO_LED_1_RED) \
+    | PIN_BIT(OUTPUT_GPIO_LED_2_GREEN)      | PIN_BIT(OUTPUT_GPIO_LED_2_RED) \
+	| PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL) | PIN_BIT(OUTPUT_GPIO_LED_NO_ISOFLURANE))
 #elif BOARD_VERSION == 2
 #define OUTPUT_INVERTED_SELECT \
     (PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL) | PIN_BIT(OUTPUT_GPIO_LED_NO_ISOFLURANE))
@@ -105,15 +91,15 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[], * output_pin_
 #define OUTPUT_CHANNEL_LED_4_RED LEDC_CHANNEL_4
 
 // BUTTONS
-#if BOARD_VERSION == 3
+#if BOARD_VERSION == 4
 #define BUTTON_GPIO_REED_SWITCH_1    37
 #define BUTTON_GPIO_REED_SWITCH_2    38
 #define BUTTON_GPIO_REED_SWITCH_3    34
 #define BUTTON_GPIO_REED_SWITCH_4    35
 #define BUTTON_GPIO_RESET_FILTER     5
 #define BUTTON_GPIO_RESET_ISOFLURANE 27
-#define BUTTON_PIN_NAMES             button_pin_names_v3
-#elif BOARD_VERSION == 2
+#define BUTTON_PIN_NAMES             button_pin_names_v4
+#elif BOARD_VERSION == 2 || BOARD_VERSION == 3
 #define BUTTON_GPIO_REED_SWITCH_1    37
 #define BUTTON_GPIO_REED_SWITCH_2    38
 #define BUTTON_GPIO_REED_SWITCH_3    34
@@ -139,12 +125,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[], * output_pin_
 
 // bit mask that determines which buttons have inverted logic
 // inverted means: HIGH = button up, LOW = button down
-#if BOARD_VERSION == 3
-#define BUTTON_INVERTED_SELECT \
-    (PIN_BIT(BUTTON_GPIO_REED_SWITCH_1)  | PIN_BIT(BUTTON_GPIO_REED_SWITCH_2) \
-    | PIN_BIT(BUTTON_GPIO_REED_SWITCH_3) | PIN_BIT(BUTTON_GPIO_REED_SWITCH_4) \
-    | PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
-#elif BOARD_VERSION == 2
+#if BOARD_VERSION == 2 || BOARD_VERSION == 3 || BOARD_VERSION == 4
 #define BUTTON_INVERTED_SELECT \
     (PIN_BIT(BUTTON_GPIO_REED_SWITCH_1)  | PIN_BIT(BUTTON_GPIO_REED_SWITCH_2) \
     | PIN_BIT(BUTTON_GPIO_REED_SWITCH_3) | PIN_BIT(BUTTON_GPIO_REED_SWITCH_4) \
@@ -155,10 +136,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[], * output_pin_
 #endif
 
 // bit mask that determines which buttons should have internal pull up resistor enabled
-#if BOARD_VERSION == 3
-#define BUTTON_PULLUP_SELECT \
-    (PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
-#elif BOARD_VERSION == 2
+#if BOARD_VERSION == 2 || BOARD_VERSION == 3 || BOARD_VERSION == 4
 #define BUTTON_PULLUP_SELECT \
     (PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
 #elif BOARD_VERSION == 1
