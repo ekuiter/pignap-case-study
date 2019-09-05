@@ -30,7 +30,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define OUTPUT_GPIO_LED_4_GREEN       19
 #define OUTPUT_GPIO_LED_4_RED         23
 #define OUTPUT_GPIO_LED_FILTER_FULL   10
-#define OUTPUT_GPIO_LED_NO_ISOFLURANE 9
+#define OUTPUT_GPIO_LED_POWER         9
 #define OUTPUT_GPIO_MAGNETIC_VALVE_1  25
 #define OUTPUT_GPIO_MAGNETIC_VALVE_2  26
 #define OUTPUT_GPIO_MAGNETIC_VALVE_3  32
@@ -47,7 +47,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define OUTPUT_GPIO_LED_4_GREEN       23
 #define OUTPUT_GPIO_LED_4_RED         19
 #define OUTPUT_GPIO_LED_FILTER_FULL   9
-#define OUTPUT_GPIO_LED_NO_ISOFLURANE 10
+#define OUTPUT_GPIO_LED_POWER         10
 #define OUTPUT_GPIO_MAGNETIC_VALVE_1  25
 #define OUTPUT_GPIO_MAGNETIC_VALVE_2  26
 #define OUTPUT_GPIO_MAGNETIC_VALVE_3  32
@@ -62,7 +62,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
     | PIN_BIT(OUTPUT_GPIO_LED_2_GREEN)      | PIN_BIT(OUTPUT_GPIO_LED_2_RED) \
     | PIN_BIT(OUTPUT_GPIO_LED_3_GREEN)      | PIN_BIT(OUTPUT_GPIO_LED_3_RED) \
     | PIN_BIT(OUTPUT_GPIO_LED_4_GREEN)      | PIN_BIT(OUTPUT_GPIO_LED_4_RED) \
-    | PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL)  | PIN_BIT(OUTPUT_GPIO_LED_NO_ISOFLURANE) \
+    | PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL)  | PIN_BIT(OUTPUT_GPIO_LED_POWER) \
     | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_1) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_2) \
     | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_3) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_4) \
     | PIN_BIT(OUTPUT_GPIO_COUNTER))
@@ -75,10 +75,10 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
     | PIN_BIT(OUTPUT_GPIO_LED_2_GREEN)     | PIN_BIT(OUTPUT_GPIO_LED_2_RED) \
 	| PIN_BIT(OUTPUT_GPIO_LED_3_GREEN)     | PIN_BIT(OUTPUT_GPIO_LED_3_RED) \
     | PIN_BIT(OUTPUT_GPIO_LED_4_GREEN)     | PIN_BIT(OUTPUT_GPIO_LED_4_RED) \
-	| PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL) | PIN_BIT(OUTPUT_GPIO_LED_NO_ISOFLURANE))
+	| PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL) | PIN_BIT(OUTPUT_GPIO_LED_POWER))
 #elif BOARD_VERSION == 2
 #define OUTPUT_INVERTED_SELECT \
-    (PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL) | PIN_BIT(OUTPUT_GPIO_LED_NO_ISOFLURANE))
+    (PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL) | PIN_BIT(OUTPUT_GPIO_LED_POWER))
 #elif BOARD_VERSION == 1
 #define OUTPUT_INVERTED_SELECT \
     (PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_1) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_2) \
@@ -99,7 +99,6 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define BUTTON_GPIO_REED_SWITCH_3    34
 #define BUTTON_GPIO_REED_SWITCH_4    35
 #define BUTTON_GPIO_RESET_FILTER     5
-#define BUTTON_GPIO_RESET_ISOFLURANE 27
 #define BUTTON_PIN_NAMES             button_pin_names_v4
 #elif BOARD_VERSION == 2 || BOARD_VERSION == 3
 #define BUTTON_GPIO_REED_SWITCH_1    37
@@ -107,7 +106,6 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define BUTTON_GPIO_REED_SWITCH_3    34
 #define BUTTON_GPIO_REED_SWITCH_4    35
 #define BUTTON_GPIO_RESET_FILTER     0
-#define BUTTON_GPIO_RESET_ISOFLURANE 27
 #define BUTTON_PIN_NAMES             button_pin_names_v2
 #elif BOARD_VERSION == 1
 #define BUTTON_GPIO_REED_SWITCH_1    37
@@ -115,7 +113,6 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define BUTTON_GPIO_REED_SWITCH_3    34
 #define BUTTON_GPIO_REED_SWITCH_4    35
 #define BUTTON_GPIO_RESET_FILTER     27
-#define BUTTON_GPIO_RESET_ISOFLURANE 0
 #define BUTTON_PIN_NAMES             button_pin_names_v1
 #endif
 
@@ -123,7 +120,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define BUTTON_PIN_SELECT \
     (PIN_BIT(BUTTON_GPIO_REED_SWITCH_1)  | PIN_BIT(BUTTON_GPIO_REED_SWITCH_2) \
     | PIN_BIT(BUTTON_GPIO_REED_SWITCH_3) | PIN_BIT(BUTTON_GPIO_REED_SWITCH_4) \
-    | PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
+    | PIN_BIT(BUTTON_GPIO_RESET_FILTER))
 
 // bit mask that determines which buttons have inverted logic
 // inverted means: HIGH = button up, LOW = button down
@@ -131,16 +128,16 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define BUTTON_INVERTED_SELECT \
     (PIN_BIT(BUTTON_GPIO_REED_SWITCH_1)  | PIN_BIT(BUTTON_GPIO_REED_SWITCH_2) \
     | PIN_BIT(BUTTON_GPIO_REED_SWITCH_3) | PIN_BIT(BUTTON_GPIO_REED_SWITCH_4) \
-    | PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
+    | PIN_BIT(BUTTON_GPIO_RESET_FILTER))
 #elif BOARD_VERSION == 1
 #define BUTTON_INVERTED_SELECT \
-    (PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
+    (0)
 #endif
 
 // bit mask that determines which buttons should have internal pull up resistor enabled
 #if BOARD_VERSION == 2 || BOARD_VERSION == 3 || BOARD_VERSION == 4
 #define BUTTON_PULLUP_SELECT \
-    (PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_RESET_ISOFLURANE))
+    (PIN_BIT(BUTTON_GPIO_RESET_FILTER))
 #elif BOARD_VERSION == 1
 #define BUTTON_PULLUP_SELECT \
     (0)
@@ -164,17 +161,12 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define CONTROLLER_COUNTER_ON_DURATION  1000
 #define CONTROLLER_COUNTER_OFF_DURATION 500
 #define CONTROLLER_FILTER_MAX           (CONTROLLER_FILTER_WARN + CONTROLLER_FILTER_TOLERANCE)
-#define CONTROLLER_ISOFLURANE_MAX       (CONTROLLER_ISOFLURANE_WARN + CONTROLLER_ISOFLURANE_TOLERANCE)
 #ifdef IS_PRODUCTION
 #define CONTROLLER_FILTER_WARN          250
-#define CONTROLLER_ISOFLURANE_WARN      250
 #define CONTROLLER_FILTER_TOLERANCE     30
-#define CONTROLLER_ISOFLURANE_TOLERANCE 30
 #else
 #define CONTROLLER_FILTER_WARN          8
-#define CONTROLLER_ISOFLURANE_WARN      10
 #define CONTROLLER_FILTER_TOLERANCE     2
-#define CONTROLLER_ISOFLURANE_TOLERANCE 2
 #endif
 
 // I2C
@@ -247,7 +239,6 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define MEM_CELL_DEFAULT               0
 #define MEM_INDEX_DEFAULT              0
 #define MEM_FILTER_COUNTER_DEFAULT     0
-#define MEM_ISOFLURANE_COUNTER_DEFAULT 0
 #define MEM_CELLS_PER_ROW              20
 #define MEM_DUMP_LINE_BUF_LEN          128
 #define MEM_DUMP_BUF_LEN               3000
@@ -278,7 +269,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define TREATMENT_PROCESS_TASK_STACK_SIZE 4096
 #define TREATMENT_PROCESS_TASK_PRIORITY   8
 
-// increments the counter, checks if filter and isoflurane are ready
+// increments the counter, checks if filter is ready
 #define CONTROLLER_TASK_CORE_ID    1
 #define CONTROLLER_TASK_STACK_SIZE 4096
 #define CONTROLLER_TASK_PRIORITY   7
