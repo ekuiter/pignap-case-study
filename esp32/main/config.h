@@ -4,11 +4,11 @@
 #include "lib/output.h"
 #include "lib/button.h"
 
-// 1 = my development board
-// 2 = first circuit board
-// 3 = updated circuit board (LEDs inverted)
-// 4 = updated circuit board (IO0/5 swapped)
-#define BOARD_VERSION 3
+// 1 = my first development board
+// 2 = my second development board
+// 3 = device prototype (LEDs inverted)
+// 4 = device prototype (IO0/5 swapped)
+#define BOARD_VERSION 2
 
 // if not defined, treatment durations are shorter
 // #define IS_PRODUCTION
@@ -153,7 +153,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define TREATMENT_LED_BLINK_FREQUENCY  1
 #define TREATMENT_LED_BLINK_DUTY       512
 #ifdef IS_PRODUCTION
-#define TREATMENT_PHASE_1_DURATION     75
+#define TREATMENT_PHASE_1_DURATION     55
 #define TREATMENT_PHASE_2_DURATION     15
 #else
 #define TREATMENT_PHASE_1_DURATION     2
