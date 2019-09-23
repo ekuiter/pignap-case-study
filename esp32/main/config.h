@@ -8,10 +8,13 @@
 // 2 = my second development board
 // 3 = device prototype (LEDs inverted)
 // 4 = device prototype (IO0/5 swapped)
-#define BOARD_VERSION 2
+#define BOARD_VERSION 1
 
 // if not defined, treatment durations are shorter
 // #define IS_PRODUCTION
+
+// if not defined, use internal non-volatile flash memory (which is less endurable)
+#define USE_FRAM
 
 // define this to check output and button GPIOs
 // #define GPIO_TEST
@@ -233,6 +236,10 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 // HTTP SERVER
 #define HTTP_AUTH_USERNAME ***REMOVED***
 #define HTTP_AUTH_PASSWORD ***REMOVED***
+
+// FRAM
+#define FRAM_I2C_ADDRESS 0x50
+#define FRAM_PAGE_NUM    8
 
 // MEMORY
 #define MEM_CELL_NUM                   366
