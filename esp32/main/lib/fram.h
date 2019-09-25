@@ -18,10 +18,12 @@ typedef i2c_dev_t fram_t[FRAM_PAGE_NUM];
 
 esp_err_t fram_read(fram_t fram, uint16_t framAddr, uint8_t items, uint8_t value[]);
 esp_err_t fram_write(fram_t fram, uint16_t framAddr, uint8_t items, uint8_t value[]);
-esp_err_t fram_read_byte(fram_t fram, uint16_t framAddr, uint8_t *value);
-esp_err_t fram_write_byte(fram_t fram, uint16_t framAddr, uint8_t value);
-esp_err_t fram_read_word(fram_t fram, uint16_t framAddr, uint16_t *value);
-esp_err_t fram_write_word(fram_t fram, uint16_t framAddr, uint16_t value);
+esp_err_t fram_read_u8(fram_t fram, uint16_t framAddr, uint8_t *value);
+esp_err_t fram_write_u8(fram_t fram, uint16_t framAddr, uint8_t value);
+esp_err_t fram_read_u16(fram_t fram, uint16_t framAddr, uint16_t *value);
+esp_err_t fram_write_u16(fram_t fram, uint16_t framAddr, uint16_t value);
+esp_err_t fram_read_u32(fram_t fram, uint16_t framAddr, uint32_t *value);
+esp_err_t fram_write_u32(fram_t fram, uint16_t framAddr, uint32_t value);
 esp_err_t fram_reset(fram_t fram);
 
 #endif
