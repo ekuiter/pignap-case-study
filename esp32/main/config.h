@@ -13,7 +13,7 @@
 // if not defined, treatment durations are shorter
 // #define IS_PRODUCTION
 
-// if not defined, use internal non-volatile flash memory (which is less endurable)
+// if not defined, use internal non-volatile flash memory for history (which is less endurable)
 #define USE_FRAM
 
 // define this to check output and button GPIOs
