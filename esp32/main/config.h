@@ -8,13 +8,16 @@
 // 2 = my second development board
 // 3 = device prototype (LEDs inverted)
 // 4 = device prototype (IO0/5 swapped)
-#define BOARD_VERSION 1
+#define BOARD_VERSION 2
 
 // if not defined, treatment durations are shorter
 // #define IS_PRODUCTION
 
 // if not defined, use internal non-volatile flash memory for history (which is less endurable)
 #define USE_FRAM
+
+// if defined, show statistics on the OLED display
+#define USE_OLED
 
 // define this to check output and button GPIOs
 // #define GPIO_TEST
@@ -179,7 +182,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 
 // LCD
 #if BOARD_VERSION == 1
-#define LCD_ENABLED
+#define USE_LCD
 #endif
 #define LCD_I2C_ADDRESS 0x27
 #define LCD_NUM_COLS    16
@@ -240,6 +243,12 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 // FRAM
 #define FRAM_I2C_ADDRESS 0x50
 #define FRAM_PAGE_NUM    8
+
+// OLED
+#define OLED_I2C_ADDRESS 0x3c
+#define OLED_CONSTRUCTOR u8g2_Setup_ssd1306_i2c_128x64_noname_f
+#define OLED_ROTATION    U8G2_R0
+#define OLED_WIDTH       128
 
 // MEMORY
 #define MEM_CELL_NUM                   366

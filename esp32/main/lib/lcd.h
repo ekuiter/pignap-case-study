@@ -7,7 +7,7 @@
 #include "../config.h"
 #include "i2cdev.h"
 
-#ifdef LCD_ENABLED
+#ifdef USE_LCD
 #define LCD_INIT(...) _lcd_init(__VA_ARGS__)
 #define LCD_LOG(...) _lcd_log(__VA_ARGS__)
 #else
