@@ -249,6 +249,12 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define OLED_CONSTRUCTOR u8g2_Setup_ssd1306_i2c_128x64_noname_f
 #define OLED_ROTATION    U8G2_R0
 #define OLED_WIDTH       128
+#define OLED_HEIGHT      64
+
+// DISPLAY
+#define DISPLAY_SPLASH_DURATION  2000
+#define DISPLAY_MESSAGE_DURATION 4000
+#define DISPLAY_REFRESH_INTERVAL 1000
 
 // MEMORY
 #define MEM_CELL_NUM                   366
@@ -290,9 +296,14 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define CONTROLLER_TASK_STACK_SIZE 4096
 #define CONTROLLER_TASK_PRIORITY   7
 
-// writes to the LCD display
-// has a higher priority than the default system loop to avoid
-// being interrupted during Wifi initialization
+// these two tasks have a higher priority than the default system loop
+// to avoid being interrupted during Wifi initialization
+// writes to the OLED display
+#define DISPLAY_TASK_CORE_ID    0
+#define DISPLAY_TASK_STACK_SIZE 4096
+#define DISPLAY_TASK_PRIORITY   26
+
+// writes to the LCD display (only on board version 1)
 #define LCD_LOG_TASK_CORE_ID    0
 #define LCD_LOG_TASK_STACK_SIZE 4096
 #define LCD_LOG_TASK_PRIORITY   25
