@@ -254,6 +254,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define MEM_CELL_NUM                   366
 #define MEM_CELL_DEFAULT               0
 #define MEM_INDEX_DEFAULT              0
+#define MEM_TOTAL_COUNTER_DEFAULT      0
 #define MEM_FILTER_COUNTER_DEFAULT     0
 #define MEM_CELLS_PER_ROW              20
 #define MEM_DUMP_LINE_BUF_LEN          128

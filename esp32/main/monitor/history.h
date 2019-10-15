@@ -6,6 +6,7 @@
 typedef struct {
     rtc_date_t today_date;
     uint16_t today, filter;
+    uint32_t total;
 } history_counters_t;
 
 void history_init(bool reset);
