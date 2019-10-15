@@ -41,7 +41,6 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define OUTPUT_GPIO_MAGNETIC_VALVE_2  26
 #define OUTPUT_GPIO_MAGNETIC_VALVE_3  32
 #define OUTPUT_GPIO_MAGNETIC_VALVE_4  33
-#define OUTPUT_GPIO_COUNTER           18
 #define OUTPUT_PIN_NAMES              output_pin_names_v2
 #elif BOARD_VERSION == 1
 #define OUTPUT_GPIO_LED_1_GREEN       14
@@ -58,7 +57,6 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define OUTPUT_GPIO_MAGNETIC_VALVE_2  26
 #define OUTPUT_GPIO_MAGNETIC_VALVE_3  32
 #define OUTPUT_GPIO_MAGNETIC_VALVE_4  33
-#define OUTPUT_GPIO_COUNTER           18
 #define OUTPUT_PIN_NAMES              output_pin_names_v1
 #endif
 
@@ -70,8 +68,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
     | PIN_BIT(OUTPUT_GPIO_LED_4_GREEN)      | PIN_BIT(OUTPUT_GPIO_LED_4_RED) \
     | PIN_BIT(OUTPUT_GPIO_LED_FILTER_FULL)  | PIN_BIT(OUTPUT_GPIO_LED_POWER) \
     | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_1) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_2) \
-    | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_3) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_4) \
-    | PIN_BIT(OUTPUT_GPIO_COUNTER))
+    | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_3) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_4))
 
 // bit mask that determines which outputs have inverted logic
 // inverted means: HIGH = output off, LOW = output on
@@ -88,8 +85,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #elif BOARD_VERSION == 1
 #define OUTPUT_INVERTED_SELECT \
     (PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_1) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_2) \
-    | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_3) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_4) \
-    | PIN_BIT(OUTPUT_GPIO_COUNTER))
+    | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_3) | PIN_BIT(OUTPUT_GPIO_MAGNETIC_VALVE_4))
 #endif
 
 // PWM channels for blinking LEDs
@@ -164,8 +160,6 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #endif
 
 // CONTROLLER
-#define CONTROLLER_COUNTER_ON_DURATION  1000
-#define CONTROLLER_COUNTER_OFF_DURATION 500
 #define CONTROLLER_FILTER_MAX           (CONTROLLER_FILTER_WARN + CONTROLLER_FILTER_TOLERANCE)
 #ifdef IS_PRODUCTION
 #define CONTROLLER_FILTER_WARN          250
