@@ -11,6 +11,8 @@
 #define PIN_BIT(x) (1ULL<<x)
 #define BUTTON_DOWN (1)
 #define BUTTON_UP (2)
+#define BUTTON_INITIALLY_DOWN (3)
+#define BUTTON_INITIALLY_UP (4)
 
 typedef struct {
 	uint8_t pin;

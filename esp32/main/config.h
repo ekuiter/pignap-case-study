@@ -101,6 +101,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define BUTTON_GPIO_REED_SWITCH_3    34
 #define BUTTON_GPIO_REED_SWITCH_4    35
 #define BUTTON_GPIO_RESET_FILTER     5
+#define BUTTON_GPIO_AIR_STATE        27
 #define BUTTON_PIN_NAMES             button_pin_names_v4
 #elif BOARD_VERSION == 2 || BOARD_VERSION == 3
 #define BUTTON_GPIO_REED_SWITCH_1    37
@@ -108,6 +109,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define BUTTON_GPIO_REED_SWITCH_3    34
 #define BUTTON_GPIO_REED_SWITCH_4    35
 #define BUTTON_GPIO_RESET_FILTER     0
+#define BUTTON_GPIO_AIR_STATE        27
 #define BUTTON_PIN_NAMES             button_pin_names_v2
 #elif BOARD_VERSION == 1
 #define BUTTON_GPIO_REED_SWITCH_1    37
@@ -115,6 +117,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define BUTTON_GPIO_REED_SWITCH_3    34
 #define BUTTON_GPIO_REED_SWITCH_4    35
 #define BUTTON_GPIO_RESET_FILTER     27
+#define BUTTON_GPIO_AIR_STATE        5
 #define BUTTON_PIN_NAMES             button_pin_names_v1
 #endif
 
@@ -122,7 +125,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define BUTTON_PIN_SELECT \
     (PIN_BIT(BUTTON_GPIO_REED_SWITCH_1)  | PIN_BIT(BUTTON_GPIO_REED_SWITCH_2) \
     | PIN_BIT(BUTTON_GPIO_REED_SWITCH_3) | PIN_BIT(BUTTON_GPIO_REED_SWITCH_4) \
-    | PIN_BIT(BUTTON_GPIO_RESET_FILTER))
+    | PIN_BIT(BUTTON_GPIO_RESET_FILTER)  | PIN_BIT(BUTTON_GPIO_AIR_STATE))
 
 // bit mask that determines which buttons have inverted logic
 // inverted means: HIGH = button up, LOW = button down
@@ -139,7 +142,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 // bit mask that determines which buttons should have internal pull up resistor enabled
 #if BOARD_VERSION == 2 || BOARD_VERSION == 3 || BOARD_VERSION == 4
 #define BUTTON_PULLUP_SELECT \
-    (PIN_BIT(BUTTON_GPIO_RESET_FILTER))
+    (PIN_BIT(BUTTON_GPIO_RESET_FILTER) | PIN_BIT(BUTTON_GPIO_AIR_STATE))
 #elif BOARD_VERSION == 1
 #define BUTTON_PULLUP_SELECT \
     (0)
