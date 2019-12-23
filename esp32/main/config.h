@@ -174,11 +174,15 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define CONTROLLER_FILTER_TOLERANCE    30
 #define CONTROLLER_PREFILTER_WARN      1500
 #define CONTROLLER_PREFILTER_TOLERANCE 50
+#define CONTROLLER_HEAT_UP_DURATION    180
+#define CONTROLLER_BLOW_UP_DURATION    20
 #else
 #define CONTROLLER_FILTER_WARN         8
 #define CONTROLLER_FILTER_TOLERANCE    2
 #define CONTROLLER_PREFILTER_WARN      12
 #define CONTROLLER_PREFILTER_TOLERANCE 3
+#define CONTROLLER_HEAT_UP_DURATION    20
+#define CONTROLLER_BLOW_UP_DURATION    5
 #endif
 
 // I2C
@@ -260,6 +264,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 // DISPLAY
 #define DISPLAY_SPLASH_DURATION  2000
 #define DISPLAY_MESSAGE_DURATION 4000
+#define DISPLAY_WAIT_DURATION    1000
 #define DISPLAY_REFRESH_INTERVAL 1000
 
 // MEMORY
