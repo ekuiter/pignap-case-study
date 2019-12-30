@@ -24,6 +24,8 @@ esp_err_t fram_read_u16(fram_t fram, uint16_t framAddr, uint16_t *value);
 esp_err_t fram_write_u16(fram_t fram, uint16_t framAddr, uint16_t value);
 esp_err_t fram_read_u32(fram_t fram, uint16_t framAddr, uint32_t *value);
 esp_err_t fram_write_u32(fram_t fram, uint16_t framAddr, uint32_t value);
+esp_err_t fram_read_u64(fram_t fram, uint16_t framAddr, uint64_t *value);
+esp_err_t fram_write_u64(fram_t fram, uint16_t framAddr, uint64_t value);
 esp_err_t fram_reset(fram_t fram);
 
 #endif

@@ -174,13 +174,15 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define CONTROLLER_FILTER_TOLERANCE    30
 #define CONTROLLER_PREFILTER_WARN      1500
 #define CONTROLLER_PREFILTER_TOLERANCE 50
-#define CONTROLLER_HEAT_UP_DURATION    180
+#define CONTROLLER_PREPARE_COOLDOWN    (60 * 60)
+#define CONTROLLER_HEAT_UP_DURATION    (3 * 60)
 #define CONTROLLER_BLOW_UP_DURATION    20
 #else
 #define CONTROLLER_FILTER_WARN         8
 #define CONTROLLER_FILTER_TOLERANCE    2
 #define CONTROLLER_PREFILTER_WARN      12
 #define CONTROLLER_PREFILTER_TOLERANCE 3
+#define CONTROLLER_PREPARE_COOLDOWN    (3 * 60)
 #define CONTROLLER_HEAT_UP_DURATION    20
 #define CONTROLLER_BLOW_UP_DURATION    5
 #endif
@@ -274,6 +276,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define MEM_TOTAL_COUNTER_DEFAULT     0
 #define MEM_FILTER_COUNTER_DEFAULT    0
 #define MEM_PREFILTER_COUNTER_DEFAULT 0
+#define MEM_SHUTDOWN_TIME_DEFAULT     0
 #define MEM_CELLS_PER_ROW             20
 #define MEM_DUMP_LINE_BUF_LEN         128
 #define MEM_DUMP_BUF_LEN              3000
@@ -332,7 +335,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define WIFI_TASK_PRIORITY   10
 
 // MISC
-#define MAIN_HEAP_INFO_INTERVAL 60
+#define MAIN_INTERVAL 60
 
 // fixes code assistance in Visual Studio Code
 #ifndef CONFIG_FREERTOS_HZ
