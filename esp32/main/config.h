@@ -7,7 +7,7 @@
 // 1 = my first development board
 // 2 = my second development board
 // 3 = device prototype (LEDs inverted)
-// 4 = device prototype (IO0/5 swapped)
+// 4 = device prototype (IO0/5 swapped) - currently used at HCP
 #define BOARD_VERSION 2
 
 // if not defined, treatment durations are shorter
@@ -113,7 +113,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define BUTTON_GPIO_REED_SWITCH_2 38
 #define BUTTON_GPIO_REED_SWITCH_3 34
 #define BUTTON_GPIO_REED_SWITCH_4 35
-#define BUTTON_GPIO_RESET  0
+#define BUTTON_GPIO_RESET         0
 #define BUTTON_PIN_NAMES          button_pin_names_v2
 #elif BOARD_VERSION == 1
 #define BUTTON_GPIO_REED_SWITCH_1 37
@@ -170,13 +170,13 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define CONTROLLER_FILTER_MAX          (CONTROLLER_FILTER_WARN + CONTROLLER_FILTER_TOLERANCE)
 #define CONTROLLER_PREFILTER_MAX       (CONTROLLER_PREFILTER_WARN + CONTROLLER_PREFILTER_TOLERANCE)
 #ifdef IS_PRODUCTION
-#define CONTROLLER_FILTER_WARN         250
+#define CONTROLLER_FILTER_WARN         370
 #define CONTROLLER_FILTER_TOLERANCE    30
-#define CONTROLLER_PREFILTER_WARN      1500
+#define CONTROLLER_PREFILTER_WARN      1200
 #define CONTROLLER_PREFILTER_TOLERANCE 50
 #define CONTROLLER_PREPARE_COOLDOWN    (60 * 60)
 #define CONTROLLER_HEAT_UP_DURATION    (3 * 60)
-#define CONTROLLER_BLOW_UP_DURATION    20
+#define CONTROLLER_BLOW_UP_DURATION    15
 #else
 #define CONTROLLER_FILTER_WARN         8
 #define CONTROLLER_FILTER_TOLERANCE    2
