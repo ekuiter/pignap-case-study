@@ -16,7 +16,7 @@ history_counters_t history_get_counters();
 history_counters_t history_increment_counters();
 history_counters_t history_reset_filter_counter();
 history_counters_t history_reset_prefilter_counter();
-int history_read_begin();
+int history_read_begin(bool ascending_order);
 int history_read_next(rtc_date_t* date, uint16_t* counter);
 
 #endif
