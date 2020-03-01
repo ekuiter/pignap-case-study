@@ -13,8 +13,10 @@
 // if not defined, treatment durations are shorter
 // #define IS_PRODUCTION
 
-// if not defined, use internal non-volatile flash memory for history (which is less endurable)
-#define USE_FRAM
+// 0 = use internal non-volatile flash memory for history (which is less endurable)
+// 1 = FM24CL16B (2 kilobyte FRAM storing the initially proposed one-year history)
+// 2 = FM24CL64B (8 kilobyte FRAM storing the now prescribed three-year history)
+#define FRAM_VERSION 1
 
 // if defined, show statistics on the OLED display
 #define USE_OLED
@@ -253,8 +255,18 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define HTTP_AUTH_PASSWORD ***REMOVED***
 
 // FRAM
+#if FRAM_VERSION == 0
+#elif FRAM_VERSION == 1
+#define USE_FRAM
 #define FRAM_I2C_ADDRESS 0x50
+#define FRAM_MAX_ADDRESS 2048
 #define FRAM_PAGE_NUM    8
+#elif FRAM_VERSION == 2
+#define USE_FRAM
+#define FRAM_I2C_ADDRESS 0x57
+#define FRAM_MAX_ADDRESS 8192
+#define FRAM_PAGE_NUM    1
+#endif
 
 // OLED
 #define OLED_I2C_ADDRESS 0x3c
