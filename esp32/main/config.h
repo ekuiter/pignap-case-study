@@ -13,10 +13,10 @@
 // if not defined, treatment durations are shorter
 // #define IS_PRODUCTION
 
-// 0 = use internal non-volatile flash memory for history (which is less endurable)
+// 0 = use internal non-volatile flash memory for one-year history (which is less endurable)
 // 1 = FM24CL16B (2 kilobyte FRAM storing the initially proposed one-year history)
 // 2 = FM24CL64B (8 kilobyte FRAM storing the now prescribed three-year history)
-#define FRAM_VERSION 1
+#define FRAM_VERSION 2
 
 // if defined, show statistics on the OLED display
 #define USE_OLED
@@ -282,7 +282,11 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define DISPLAY_REFRESH_INTERVAL 1000
 
 // MEMORY
-#define MEM_CELL_NUM                  366
+#if FRAM_VERSION == 0 || FRAM_VERSION == 1
+#define MEM_CELL_NUM                  (365 + 1) // one year + leap day (366 days)
+#elif FRAM_VERSION == 2
+#define MEM_CELL_NUM                  (3 * 365 + 1) // three years + leap day (1096 days)
+#endif
 #define MEM_CELL_DEFAULT              0
 #define MEM_INDEX_DEFAULT             0
 #define MEM_TOTAL_COUNTER_DEFAULT     0
@@ -291,8 +295,9 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define MEM_SHUTDOWN_TIME_DEFAULT     0
 #define MEM_CELLS_PER_ROW             20
 #define MEM_DUMP_LINE_BUF_LEN         128
-#define MEM_DUMP_BUF_LEN              3000
+#define MEM_DUMP_BUF_LEN              7000
 #define MEM_CSV_ROW_LEN               20
+#define MEM_VIRTUAL_CELL_NUM          180
 
 // HISTORY
 #define HISTORY_INVALIDATE_INTERVAL 60
