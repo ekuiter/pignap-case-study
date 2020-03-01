@@ -295,7 +295,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define MEM_SHUTDOWN_TIME_DEFAULT     0
 #define MEM_CELLS_PER_ROW             20
 #define MEM_DUMP_LINE_BUF_LEN         128
-#define MEM_DUMP_BUF_LEN              7000
+#define MEM_DUMP_BUF_LEN              10000
 #define MEM_CSV_ROW_LEN               20
 #define MEM_VIRTUAL_CELL_NUM          180
 
