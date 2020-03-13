@@ -41,8 +41,8 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define OUTPUT_GPIO_LED_3_RED        2
 #define OUTPUT_GPIO_LED_4_GREEN      19
 #define OUTPUT_GPIO_LED_4_RED        23
-#define OUTPUT_GPIO_LED_FILTER       10
-#define OUTPUT_GPIO_LED_PREFILTER    27 /* connected to an input in versions 2 and 3 (originally used as isoflurane reset) */
+#define OUTPUT_GPIO_LED_FILTER       27 /* connected to an input in versions 2 and 3 (originally used as isoflurane reset) */
+#define OUTPUT_GPIO_LED_PREFILTER    10
 #define OUTPUT_GPIO_LED_POWER        9
 #define OUTPUT_GPIO_MAGNETIC_VALVE_1 25
 #define OUTPUT_GPIO_MAGNETIC_VALVE_2 26
