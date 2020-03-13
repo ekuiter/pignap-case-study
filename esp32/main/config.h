@@ -157,6 +157,8 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
     (0)
 #endif
 
+#define BUTTON_HOLD_DURATION 1000
+
 // TREATMENT PROCESS
 #define TREATMENT_PROCESS_NUM          4
 #define TREATMENT_LED_BLINK_RESOLUTION LEDC_TIMER_10_BIT

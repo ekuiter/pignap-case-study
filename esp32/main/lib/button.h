@@ -13,6 +13,7 @@
 #define BUTTON_UP (2)
 #define BUTTON_INITIALLY_DOWN (3)
 #define BUTTON_INITIALLY_UP (4)
+#define BUTTON_HOLD (5)
 
 typedef struct {
 	uint8_t pin;
