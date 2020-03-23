@@ -3,6 +3,7 @@
 
 #include "rtc.h"
 
+uint16_t battery_get_updates();
 void battery_init(i2c_dev_t* dev);
 bool battery_is_invalid(i2c_dev_t* dev);
 bool battery_is_maintenance_required(i2c_dev_t* dev);
