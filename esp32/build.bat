@@ -1,3 +1,3 @@
 vagrant up
-echo|set /p="make" | vagrant ssh
+echo|set /p="./build.sh" | vagrant ssh
 pause

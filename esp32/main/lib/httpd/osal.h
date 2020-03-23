@@ -20,7 +20,7 @@
 #include <unistd.h>
 #include <stdint.h>
 #include <esp_timer.h>
-#include "../../config.h"
+#include "../../config/config.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -12,7 +12,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "i2cdev.h"
-#include "../config.h"
+#include "../config/config.h"
 
 typedef i2c_dev_t fram_t[FRAM_PAGE_NUM];
 

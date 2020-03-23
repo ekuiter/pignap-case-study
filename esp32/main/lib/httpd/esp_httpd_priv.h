@@ -23,7 +23,7 @@
 #include <esp_log.h>
 #include <esp_err.h>
 #include "sdkconfig.h"
-#include "../../config.h"
+#include "../../config/config.h"
 
 #include <esp_http_server.h>
 #include "osal.h"

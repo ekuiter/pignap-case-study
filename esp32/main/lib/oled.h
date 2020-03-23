@@ -1,7 +1,7 @@
 #ifndef OLED_H
 #define OLED_H
 
-#include "../config.h"
+#include "../config/config.h"
 
 #ifdef USE_OLED
 #include "u8g2.h"

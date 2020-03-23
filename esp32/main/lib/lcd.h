@@ -4,7 +4,7 @@
 // see https://github.com/maxsydney/ESP32-HD44780
 
 #include <stdint.h>
-#include "../config.h"
+#include "../config/config.h"
 #include "i2cdev.h"
 
 #ifdef USE_LCD

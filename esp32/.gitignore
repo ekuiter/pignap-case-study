@@ -1,4 +1,6 @@
 /sdkconfig.old
 /build
+/bin
+/_bin
 /*.log
 /.vagrant
