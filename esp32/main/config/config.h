@@ -257,9 +257,9 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #define USE_FRAM
 // for FM24CL64B: 0x50 for A123=000 (at HCP); 0x57 for A123=111 (RTC board)
 #if BOARD_VERSION == 3 || BOARD_VERSION == 4
-#define FRAM_I2C_ADDRESS 0x57
-#elif BOARD_VERSION == 2 || BOARD_VERSION == 1
 #define FRAM_I2C_ADDRESS 0x50
+#elif BOARD_VERSION == 2 || BOARD_VERSION == 1
+#define FRAM_I2C_ADDRESS 0x57
 #endif
 #define FRAM_MAX_ADDRESS 8192
 #define FRAM_PAGE_NUM    1
