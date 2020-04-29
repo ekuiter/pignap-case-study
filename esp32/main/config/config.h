@@ -284,18 +284,19 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #elif FRAM_VERSION == 2
 #define MEM_CELL_NUM                  (3 * 365 + 1) // three years + leap day (1096 days)
 #endif
-#define MEM_CELL_DEFAULT              0
-#define MEM_INDEX_DEFAULT             0
-#define MEM_TOTAL_COUNTER_DEFAULT     0
-#define MEM_FILTER_COUNTER_DEFAULT    0
-#define MEM_PREFILTER_COUNTER_DEFAULT 0
-#define MEM_SHUTDOWN_TIME_DEFAULT     0
-#define MEM_FILTER_RESET_DATE_DEFAULT 0
-#define MEM_CELLS_PER_ROW             20
-#define MEM_DUMP_LINE_BUF_LEN         128
-#define MEM_DUMP_BUF_LEN              10000
-#define MEM_CSV_ROW_LEN               20
-#define MEM_VIRTUAL_CELL_NUM          180
+#define MEM_CELL_DEFAULT                 0
+#define MEM_INDEX_DEFAULT                0
+#define MEM_TOTAL_COUNTER_DEFAULT        0
+#define MEM_FILTER_COUNTER_DEFAULT       0
+#define MEM_PREFILTER_COUNTER_DEFAULT    0
+#define MEM_SHUTDOWN_TIME_DEFAULT        0
+#define MEM_FILTER_RESET_DATE_DEFAULT    0
+#define MEM_PREFILTER_RESET_DATE_DEFAULT 0
+#define MEM_CELLS_PER_ROW                20
+#define MEM_DUMP_LINE_BUF_LEN            128
+#define MEM_DUMP_BUF_LEN                 10000
+#define MEM_CSV_ROW_LEN                  20
+#define MEM_VIRTUAL_CELL_NUM             180
 
 // HISTORY
 #define HISTORY_INVALIDATE_INTERVAL 60
