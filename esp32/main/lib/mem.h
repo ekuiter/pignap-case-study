@@ -8,7 +8,7 @@
 
 esp_err_t _mem_init(uint16_t cell_default, uint16_t idx_default, rtc_date_t date_default,
     uint32_t total_counter, uint16_t filter_counter, uint16_t prefilter_counter,
-    uint64_t shutdown_time, uint32_t filter_reset_date, uint32_t prefilter_reset_date, bool reset);
+    uint64_t shutdown_time, rtc_date_t filter_reset_date, rtc_date_t prefilter_reset_date, bool reset);
 esp_err_t mem_reset();
 bool mem_is_readonly();
 void mem_set_readonly(bool _readonly);
