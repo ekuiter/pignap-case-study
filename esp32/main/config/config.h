@@ -7,6 +7,8 @@
 // include the current configuration (see build script)
 #include "cfg_current.h"
 
+#define REVISION "2020-05-08"
+
 // if defined, show statistics on the OLED display
 #define USE_OLED
 
@@ -165,7 +167,7 @@ extern const char* output_pin_names_v1[], * output_pin_names_v2[],
 #ifdef IS_PRODUCTION
 #define CONTROLLER_FILTER_WARN         500
 #define CONTROLLER_FILTER_TOLERANCE    30
-#define CONTROLLER_PREFILTER_WARN      1200
+#define CONTROLLER_PREFILTER_WARN      1450
 #define CONTROLLER_PREFILTER_TOLERANCE 50
 #define CONTROLLER_PREPARE_COOLDOWN    (60 * 60)
 #define CONTROLLER_HEAT_UP_DURATION    (3 * 60)

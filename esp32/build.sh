@@ -1,5 +1,5 @@
 #!/bin/bash
-DEFAULT_CFG=cfg_v2_dev_3yr
+DEFAULT_CFG=cfg_v4_prod_3yr
 BUILD_CFGS="cfg_v4_dev_1yr:pignap_1_year_test cfg_v4_dev_3yr:pignap_3_years_test cfg_v4_prod_1yr:pignap_1_year cfg_v4_prod_3yr:pignap_3_years"
 
 rm -rf _bin
